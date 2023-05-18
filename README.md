@@ -16,6 +16,87 @@ Hola! 👋🏻 las ramas están organizadas por semana, es decir **CADA RAMA SER
         <li>dia5 : ejercicios</li>
       </ul>
   </li>
+  <li>SEMANA 02 : FLASK - FIREBASE  -https://github.com/cesarmayta/CODIGO-G20/tree/semana02
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 03 : MYSQL Y API REST CON FLASK  -https://github.com/cesarmayta/CODIGO-G20/tree/semana03
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 04 : SEGURIDAD CON FLASK Y API REST  -https://github.com/cesarmayta/CODIGO-G20/tree/semana04
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 05 : PRUEBAS AUTOMATIZADAS CON PYTHON  -https://github.com/cesarmayta/CODIGO-G20/tree/semana05
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 06 : DJANGO  -https://github.com/cesarmayta/CODIGO-G20/tree/semana06
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 07 : API REST CON DJANGO REST FRAMEWORK  -https://github.com/cesarmayta/CODIGO-G20/tree/semana07
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 08 : NODEJS - EXPRESS  -https://github.com/cesarmayta/CODIGO-G20/tree/semana08
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 09 : MONGODB - MICROSERVICIOS  -https://github.com/cesarmayta/CODIGO-G20/tree/semana09
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
+  <li>SEMANA 10 : CLOUD  -https://github.com/cesarmayta/CODIGO-G20/tree/semana10
+      <ul>
+        <li>dia1 :</li>
+        <li>dia2 :</li>
+        <li>dia3 :</li>
+        <li>dia4 :</li>
+        <li>dia5 :</li>
+      </ul>
+  </li>
 </ul>
 
 # Instrucciones
