@@ -1,5 +1,18 @@
 from tkinter import *
 from tkinter.ttk import Treeview
+import sqlite3
+
+conn = sqlite3.connect('empresas.db')
+cursor = conn.cursor()
+
+cursor.execute("""
+               CREATE TABLE if not exists empresas (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    ruc TEXT(20),
+                    rsocial TEXT
+                );
+               """)
+
 
 class Empresa:
     def __init__(self,window):
@@ -21,8 +34,8 @@ class Empresa:
         #razon social
         lb_rsocial = Label(frame,text='Razón Social :')
         lb_rsocial.grid(row=1,column=2)
-        self.txt_email = Entry(frame)
-        self.txt_email.grid(row=1,column=3)
+        self.txt_rsocial = Entry(frame)
+        self.txt_rsocial.grid(row=1,column=3)
         
         #boton insertar nueva empresa
         btn_insertar = Button(frame,text='Insertar',command=self.insertar_empresa)
@@ -35,7 +48,9 @@ class Empresa:
         self.trv_empresas.heading('#1',text='Razón Social',anchor=CENTER)
         
     def insertar_empresa(self):
-        print("insertando nueva empresa")      
+        rsocial = self.txt_rsocial.get()
+        print(rsocial)
+        self.trv_empresas.insert('',END,text=self.txt_ruc.get(),values=(rsocial)) 
         
 wind_empresa = Tk()
 app = Empresa(wind_empresa)
