@@ -42,16 +42,36 @@ class Empresa:
         btn_insertar.grid(row=1,column=4)
         
         #treeview
-        self.trv_empresas = Treeview(height=10,columns=2)
+        self.trv_empresas = Treeview(height=10)
+        self.trv_empresas['columns'] = ('ruc','rsocial')
+        self.trv_empresas.column('#0',width=0,stretch=NO)
+        self.trv_empresas.column('ruc')
+        self.trv_empresas.column('rsocial')
+        self.trv_empresas.heading('ruc',text='RUC',anchor=CENTER)
+        self.trv_empresas.heading('rsocial',text='Razón Social',anchor=CENTER)
         self.trv_empresas.grid(row=2,column=0,padx=10)
-        self.trv_empresas.heading('#0',text='RUC',anchor=CENTER)
-        self.trv_empresas.heading('#1',text='Razón Social',anchor=CENTER)
+        
+        self.mostrar_empresas()
+        
         
     def insertar_empresa(self):
+        ruc = self.txt_ruc.get()
         rsocial = self.txt_rsocial.get()
-        print(rsocial)
-        self.trv_empresas.insert('',END,text=self.txt_ruc.get(),values=(rsocial)) 
         
+        cursor.execute("""
+                       insert into empresas(ruc,rsocial)
+                       values (?,?)
+                       """,(ruc,rsocial))
+        conn.commit()
+        self.mostrar_empresas()
+        
+    def mostrar_empresas(self):
+        lista_empresas = cursor.execute("select * from empresas").fetchall()
+        self.trv_empresas.delete(*self.trv_empresas.get_children())
+        for empresa in lista_empresas:
+            self.trv_empresas.insert('',END,empresa[0],values=(empresa[1],empresa[2]))
+        
+    
 wind_empresa = Tk()
 app = Empresa(wind_empresa)
 wind_empresa.mainloop()
