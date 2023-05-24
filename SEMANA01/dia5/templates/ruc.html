@@ -20,15 +20,18 @@
         </div>
         <div class="row">
             <div class="col-sm">
-                <form action="#" method="POST">
+                <form action="/consultaruc" method="POST">
                     <div class="form-group">
                       <label for="exampleInputEmail1">RUC:</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                      <input type="text" name="ruc" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Buscar</button>
                 </form>
             </div>
         </div>
+    </div>
+    <div class="alert alert-primary" role="alert">
+        {{rsocial}}
     </div>
 
   </body>
