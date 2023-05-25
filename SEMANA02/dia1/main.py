@@ -1,7 +1,10 @@
 from flask import Flask,render_template,request
 from github import GitHubProfile
+from firebase import FirebaseAdmin
 
 app = Flask(__name__)
+
+fb = FirebaseAdmin()
 
 @app.route('/')
 def index():
@@ -18,7 +21,12 @@ def index():
 
 @app.route('/portafolio')
 def portafolio():
-    return render_template('portafolio.html')
+    lista_proyectos = fb.get_collection('proyectos')
+    print(lista_proyectos)
+    context = {
+        'proyectos':lista_proyectos
+    }
+    return render_template('portafolio.html',**context)
 
 @app.route('/acercade')
 def acercade():
