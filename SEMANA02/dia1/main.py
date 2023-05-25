@@ -1,10 +1,20 @@
 from flask import Flask,render_template,request
+from github import GitHubProfile
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    perfil = GitHubProfile()
+    context = {
+        'nombre':perfil.nombre,
+        'imagen':perfil.imagen,
+        'biografia':perfil.biografia,
+        'ubicacion':perfil.ubicacion,
+        'github':perfil.github,
+        'twitter':perfil.twitter
+    }
+    return render_template('index.html',**context)
 
 @app.route('/portafolio')
 def portafolio():
