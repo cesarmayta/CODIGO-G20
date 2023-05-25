@@ -9,13 +9,15 @@ fb = FirebaseAdmin()
 @app.route('/')
 def index():
     perfil = GitHubProfile()
+    redes_sociales = fb.get_collection('redes_sociales')
     context = {
         'nombre':perfil.nombre,
         'imagen':perfil.imagen,
         'biografia':perfil.biografia,
         'ubicacion':perfil.ubicacion,
         'github':perfil.github,
-        'twitter':perfil.twitter
+        'twitter':perfil.twitter,
+        'redes':redes_sociales
     }
     return render_template('index.html',**context)
 
