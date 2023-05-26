@@ -1,0 +1,4 @@
+{% import 'portafolio/includes/macros.html' as macros %}
+{% for proyecto in proyectos %}
+    {{macros.mostrar_detalle_proyecto(proyecto)}}
+{% endfor %}

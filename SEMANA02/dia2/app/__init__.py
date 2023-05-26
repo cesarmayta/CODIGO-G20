@@ -1,4 +1,9 @@
 from flask import Flask
+from app.firebase import FirebaseAdmin
+from app.github import GitHubProfile
+
+fb = FirebaseAdmin()
+perfil = GitHubProfile()
 
 #importamos blueprints
 from .portafolio import portafolio

@@ -1,0 +1,31 @@
+<footer class="footer text-center">
+    <div class="container">
+        <div class="row">
+            <!-- Footer Location-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Ubicación</h4>
+                <p class="lead mb-0">
+                    {{ubicacion}}
+                </p>
+            </div>
+            <!-- Footer Social Icons-->
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <h4 class="text-uppercase mb-4">Redes Sociales</h4>
+                {% for red in redes %}
+                <a class="btn btn-outline-light btn-social mx-1" href="{{red['url']}}"><i class="fab fa-fw {{red['icono']}}"></i></a>
+                {% endfor %}
+            </div>
+            <!-- Footer About Text-->
+            <div class="col-lg-4">
+                <h4 class="text-uppercase mb-4">Acerca de mi</h4>
+                <p class="lead mb-0">
+                    {{biografia}}
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Copyright Section-->
+<div class="copyright py-4 text-center text-white">
+    <div class="container"><small>Copyright &copy; Your Website 2023</small></div>
+</div>
