@@ -41,6 +41,11 @@
                                             </div>
                                         </form>
                                     </div>
+                                    {%for message in get_flashed_messages() %}
+                                        <div class="alert alert-danger">
+                                            {{message}}
+                                        </div>
+                                    {% endfor %}
                                     <div class="card-footer text-center py-3">
                                         <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
                                     </div>

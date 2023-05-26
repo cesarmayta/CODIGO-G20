@@ -1,4 +1,4 @@
-from flask import render_template,request
+from flask import render_template,request,redirect,url_for,flash
 from . import admin
 
 import pyrebase
@@ -22,7 +22,9 @@ def login():
             usuario = auth.sign_in_with_email_and_password(email,password)
             data_usuario = auth.get_account_info(usuario['idToken'])
             print(data_usuario)
+            return redirect(url_for('admin.index'))
         except:
             print("usuario no valido")
+            flash("usuario password invalidos")
         
     return render_template('admin/login.html')
