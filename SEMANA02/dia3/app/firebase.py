@@ -27,6 +27,17 @@ class FirebaseAdmin:
         doc_value = self.db.collection(col_name).document().set(data)
         return doc_value
     
+    def get_document(self,col_name,id):
+        doc_value = self.db.collection(col_name).document(id).get()
+        return doc_value.to_dict()
+    
+    def update_document(self,col_name,id,data):
+        doc_value = self.db.collection(col_name).document(id).set(data)
+        return doc_value
+
+    def delete_document(self,col_name,id):
+        self.db.collection(col_name).document(id).delete()
+        return True    
     
 #fb = FirebaseAdmin()
 #print(fb.get_collection('proyectos'))

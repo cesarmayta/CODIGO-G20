@@ -69,3 +69,11 @@ def proyectos():
         'proyecto_form':proyecto_form
     }
     return render_template('admin/proyectos.html',**context)
+
+@admin.route('/proyecto/<id>',methods=['GET','POST'])
+def proyecto(id=''):
+    if('token' not in session):
+        return redirect(url_for('admin.login'))
+    
+    lista_proyectos = fb.get_collection('proyectos')
+    
