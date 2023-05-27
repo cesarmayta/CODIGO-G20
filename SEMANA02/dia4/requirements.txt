@@ -1,0 +1,7 @@
+flask
+firebase_admin
+python-dotenv
+requests-toolbelt==0.10.1
+Pyrebase4==4.6.0
+Flask-WTF
+bootstrap-flask

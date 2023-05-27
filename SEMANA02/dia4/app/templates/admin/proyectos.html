@@ -1,0 +1,49 @@
+{% extends 'admin/layoutAdmin.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Proyectos</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+        <li class="breadcrumb-item active">Proyectos</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for proyecto in proyectos %}
+                        <tr>
+                            <td>{{proyecto['nombre']}}</td>
+                            <td>{{proyecto['descripcion']}}</td>
+                            <td>{{proyecto['imagen']}}</td>
+                            <td>
+                                <a href="/admin/proyecto/{{proyecto['id']}}"
+                                class="btn btn-primary">Editar</a>
+                                <a href="/admin/delproyecto/{{proyecto['id']}}"
+                                class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{render_form(proyecto_form)}}
+        </div>
+    </div>
+</div>
+{% endblock %}

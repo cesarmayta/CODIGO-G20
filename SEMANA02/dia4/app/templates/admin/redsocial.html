@@ -1,0 +1,46 @@
+{% extends 'admin/layoutAdmin.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Redes Sociales</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+        <li class="breadcrumb-item active">Redes Sociales</li>
+    </ol>
+    <div class="card mb-4">
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Icono</th>
+                        <th>Url</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Icono</th>
+                        <th>Url</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for social_network in social_networks %}
+                        <tr>
+                            <td>{{social_network['icono']}}</td>
+                            <td>{{social_network['url']}}</td>
+                            <td>
+                                <a href="/admin/redsocial/{{social_network['id']}}"
+                                class="btn btn-primary">Editar</a>
+                                <a href="/admin/delredsocial/{{social_network['id']}}"
+                                class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {{render_form(social_network_form)}}
+        </div>
+    </div>
+</div>
+{% endblock %}
