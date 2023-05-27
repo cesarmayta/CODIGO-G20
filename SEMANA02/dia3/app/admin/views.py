@@ -101,3 +101,14 @@ def proyecto(id=''):
     }
     
     return render_template('admin/proyectos.html',**context)
+
+
+@admin.route('/delproyecto/<id>')
+def del_proyecto(id=''):
+    if('token' not in session):
+        return redirect(url_for('admin.login'))
+    
+    resultado_del_proyecto = fb.delete_document('proyectos',id)
+    if(resultado_del_proyecto == True):
+        return redirect(url_for('admin.proyectos'))
+        
