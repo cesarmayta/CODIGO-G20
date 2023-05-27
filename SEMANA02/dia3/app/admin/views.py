@@ -76,4 +76,28 @@ def proyecto(id=''):
         return redirect(url_for('admin.login'))
     
     lista_proyectos = fb.get_collection('proyectos')
+    proyecto_data = fb.get_document('proyectos',id)
+    print(proyecto_data)
+    proyecto_form = ProyectoForm(data=proyecto_data)
     
+    ##actualizamos el proyecto
+    if proyecto_form.validate_on_submit():
+        
+        data_proyecto_actualizar = {
+            'nombre': proyecto_form.nombre.data,
+            'descripcion':proyecto_form.descripcion.data,
+            'imagen':proyecto_form.imagen.data
+        }
+        
+        proyecto_actualizado = fb.update_document('proyectos',id,data_proyecto_actualizar)
+        
+        return redirect(url_for('admin.proyectos'))
+    
+    
+    
+    context = {
+        'proyectos':lista_proyectos,
+        'proyecto_form':proyecto_form
+    }
+    
+    return render_template('admin/proyectos.html',**context)
