@@ -23,6 +23,10 @@ class FirebaseAdmin:
             
         return list_collection
     
+    def insert_document(self,col_name,data):
+        doc_value = self.db.collection(col_name).document().set(data)
+        return doc_value
+    
     
 #fb = FirebaseAdmin()
 #print(fb.get_collection('proyectos'))

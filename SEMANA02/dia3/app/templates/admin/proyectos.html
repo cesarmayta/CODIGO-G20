@@ -1,4 +1,5 @@
 {% extends 'admin/layoutAdmin.html' %}
+{% from 'bootstrap4/form.html' import render_form %}
 {% block content %}
 <div class="container-fluid px-4">
     <h1 class="mt-4">Proyectos</h1>
@@ -33,7 +34,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            
+            {{render_form(proyecto_form)}}
         </div>
     </div>
 </div>

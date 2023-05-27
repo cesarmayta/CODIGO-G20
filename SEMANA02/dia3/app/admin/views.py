@@ -9,6 +9,8 @@ auth = fb_app.auth()
 
 from app import fb
 
+from .forms import ProyectoForm
+
 @admin.route('/')
 def index():
     if('token' not in session):
@@ -40,16 +42,30 @@ def logout():
     session.pop('token')
     return redirect(url_for('admin.index'))
 
-@admin.route('/proyectos')
+@admin.route('/proyectos',methods=['GET','POST'])
 def proyectos():
     if('token' not in session):
         return redirect(url_for('admin.login'))
     
     lista_proyectos = fb.get_collection('proyectos')
+    proyecto_form = ProyectoForm()
+    
+    if proyecto_form.validate_on_submit():
+        #registrar nuevo proyecto
+        data_nuevo_proyecto = {
+            'nombre': proyecto_form.nombre.data,
+            'descripcion':proyecto_form.descripcion.data,
+            'imagen':proyecto_form.imagen.data
+        }
+        nuevo_proyecto = fb.insert_document('proyectos',data_nuevo_proyecto)
+        print(nuevo_proyecto)
+        
+        return redirect(url_for('admin.proyectos'))
     
     #print(lista_proyectos)
     
     context = {
-        'proyectos':lista_proyectos
+        'proyectos':lista_proyectos,
+        'proyecto_form':proyecto_form
     }
     return render_template('admin/proyectos.html',**context)
