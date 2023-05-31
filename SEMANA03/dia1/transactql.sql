@@ -4,6 +4,8 @@ SHOW DATABASES;
 # Crear un base de datos
 CREATE DATABASE codigo;
 
+USE codigo;
+
 # Crear una tabla
 CREATE TABLE alumnos(
 	id int,
