@@ -17,7 +17,6 @@ select pais,avg(nota) as promedio
 from notas
 group by pais
 having promedio > 10;
---MOSTRAR TODOS LOS ALUMNOS DE PERU CUYA NOTA SEA MAYOR AL
---PROMEDIO DE LA NOTA DE TODO EL PAIS
+
 
 
