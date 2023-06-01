@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import mysql.connector
 import psycopg2
 
@@ -49,8 +49,9 @@ def registrar_alumno():
           }, 400
     else:
       try:
-        sql = 'INSERT INTO codigo.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
-        values = (11, "Earling", "Haland")
+        json = request.get_json()
+        sql = 'INSERT INTO codigo.alumnos (nombre, apellido) VALUES (%s,%s)'
+        values = (json['nombre'], json['apellido'])
         mysql_cursor.execute(sql, values)
         mysql_db.commit()
         return {
@@ -85,8 +86,9 @@ def registrar_alumno_postgres():
          }, 400
     else:
       try:
-        sql = 'INSERT INTO public.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
-        values = (11, "Earling", "Haland")
+        json = request.get_json()
+        sql = 'INSERT INTO codigo.alumnos (nombre, apellido) VALUES (%s,%s)'
+        values = (json['nombre'], json['apellido'])
         postgres_cursor.execute(sql, values)
         postgres_db.commit()
         return {
