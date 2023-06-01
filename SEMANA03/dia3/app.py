@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import mysql.connector
 import psycopg2
 
@@ -26,31 +26,77 @@ postgres_cursor = postgres_db.cursor()
 def index():
     return 'La API funciona correctamente 😎'
 
-@app.route('/mysql/registrar-alumno', methods=['POST'])
+@app.route('/mysql/registrar-alumno', methods=['POST', 'GET'])
 def registrar_alumno():
-    try:
-      # Opcion 1
-      # sql = 'INSERT INTO alumnos (id, nombre, apellido) VALUES (11, "Earling", "Haland")'
-      # mysql_cursor.execute(sql)
-      # Opcion 2
-      sql = 'INSERT INTO public.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
-      values = (11, "Earling", "Haland")
-      mysql_cursor.execute(sql, values)
-      mysql_db.commit()
-      return 'Alumno registrado correctamente'
-    except Exception as e:
-        return str(e)
+    method = request.method
+    if method == 'GET':
+        try:
+          sql = 'SELECT * FROM codigo.alumnos'
+          mysql_cursor.execute(sql)
+          record = mysql_cursor.fetchall()
+          response = []
+          for alumno in record:
+             response.append({
+                'id': alumno[0],
+                'nombre': alumno[1],
+                'apellido': alumno[2]
+             })
+          return response, 200
+        except Exception as e:
+          return {
+             'message': 'Error',
+             'error': str(e)
+          }, 400
+    else:
+      try:
+        sql = 'INSERT INTO codigo.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
+        values = (11, "Earling", "Haland")
+        mysql_cursor.execute(sql, values)
+        mysql_db.commit()
+        return {
+           'message': 'Alumno registrado exitosamente'
+        }, 200
+      except Exception as e:
+          return {
+             'message': 'Error',
+             'error': str(e)
+          }, 500
     
-@app.route('/postgres/registrar-alumno', methods=['POST'])
+@app.route('/postgres/registrar-alumno', methods=['POST', 'GET'])
 def registrar_alumno_postgres():
-    try:
-      sql = 'INSERT INTO public.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
-      values = (11, "Earling", "Haland")
-      postgres_cursor.execute(sql, values)
-      postgres_db.commit()
-      return 'Alumno registrado correctamente'
-    except Exception as e:
-        return str(e)
+    method = request.method
+    if method == 'GET':
+      try:
+        sql = 'SELECT * FROM public.alumnos'
+        postgres_cursor.execute(sql)
+        record = postgres_cursor.fetchall()
+        response = []
+        for alumno in record:
+          response.append({
+              'id': alumno[0],
+              'nombre': alumno[1],
+              'apellido': alumno[2]
+          })
+        return response, 200
+      except Exception as e:
+         return {
+            'message': 'Error',
+            'error': str(e)
+         }, 400
+    else:
+      try:
+        sql = 'INSERT INTO public.alumnos (id, nombre, apellido) VALUES (%s,%s,%s)'
+        values = (11, "Earling", "Haland")
+        postgres_cursor.execute(sql, values)
+        postgres_db.commit()
+        return {
+           'message': 'Alumno registrado exitosamente'
+        }, 200
+      except Exception as e:
+          return {
+            'message': 'Error',
+            'error': str(e)
+         }, 500
     
 
 if __name__ == '__main__':
