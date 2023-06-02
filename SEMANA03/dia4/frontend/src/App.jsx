@@ -61,6 +61,18 @@ class App extends React.Component{
     )
   }
 
+  mostrar(cod,index){
+    axios.get('http://localhost:5000/tarea/'+cod)
+    .then(res=>{
+      this.setState({
+        pos:index,
+        descripcion:res.data.content.descripcion,
+        id:res.data.content.id,
+        tituloBoton:'Actualizar Tarea'
+      })
+    })
+  }
+
   render(){
     return(
       <div>
@@ -87,14 +99,16 @@ class App extends React.Component{
               </tr>
             </thead>
             <tbody>
-              {this.state.tareas.map((tarea)=>{
+              {this.state.tareas.map((tarea,index)=>{
                 return(
                   <tr key={tarea.id}>
                     <td>{tarea.id}</td>
                     <td>{tarea.descripcion}</td>
                     <td>{tarea.estado}</td>
                     <td>
-                      ...
+                      <Button variant="success" onClick={()=>this.mostrar(tarea.id,index)}>
+                        Editar
+                      </Button>
                     </td>
                   </tr>
                 )
