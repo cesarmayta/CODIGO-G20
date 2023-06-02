@@ -87,9 +87,12 @@ def registrar_alumno_postgres():
     else:
       try:
         json = request.get_json()
-        sql = 'INSERT INTO codigo.alumnos (nombre, apellido) VALUES (%s,%s)'
-        values = (json['nombre'], json['apellido'])
-        postgres_cursor.execute(sql, values)
+        values = ""
+        for alumno in json:
+          values += f"('" + alumno['nombre'] + "','" + alumno['apellido'] + "'),"
+        values = values[:-1]
+        sql = """INSERT INTO public.alumnos (nombre, apellido) VALUES """ + values;
+        postgres_cursor.execute(sql)
         postgres_db.commit()
         return {
            'message': 'Alumno registrado exitosamente'
