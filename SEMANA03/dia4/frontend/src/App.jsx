@@ -43,7 +43,27 @@ class App extends React.Component{
       estado : this.state.estado
     }
 
-    axios.post('http://localhost:5000/tarea',dataTarea)
+    let cod = this.state.id;
+
+    if(cod>0){
+      //actualizar
+      axios.put('http://localhost:5000/tarea/'+cod,dataTarea)
+      .then(res=>{
+        let indx = this.state.pos
+        this.state.tareas[indx] = res.data.content
+        var temp = this.state.tareas
+        this.setState({
+          descripcion:'',
+          tareas:temp,
+          tituloBoton:'Agregar Tarea',
+          pos:null,
+          id:0
+        })
+      })
+    }
+    else{
+      //insertar
+      axios.post('http://localhost:5000/tarea',dataTarea)
     .then(res=>{
         console.log(res.data.content)
         this.state.tareas.push(res.data.content)
@@ -57,8 +77,8 @@ class App extends React.Component{
         }).catch((error)=>{
           alert(error.toString())
         })
-      }
-    )
+      })
+    }
   }
 
   mostrar(cod,index){
