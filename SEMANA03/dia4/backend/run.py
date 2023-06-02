@@ -1,5 +1,6 @@
 from flask import Flask,jsonify,request
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 
@@ -29,6 +30,12 @@ CREATE TABLE tarea(
 )
 """
 
+""" USO DE MARSHMALLOW """
+ma = Marshmallow(app)
+class TareaSchema(ma.Schema):
+    class Meta:
+        fields = ('id','descripcion','estado')
+
 
 @app.route('/')
 def index():
@@ -40,7 +47,7 @@ def index():
     return jsonify(context)
 
 @app.route('/tarea',methods=['POST'])
-def setTarea():
+def set_tarea():
     descripcion = request.json['descripcion']
     estado = request.json['estado']
     
@@ -49,9 +56,23 @@ def setTarea():
     db.session.add(nueva_tarea)
     db.session.commit()
     
+    data_schema = TareaSchema()
+    
     context = {
         'status':True,
-        'content':'tarea registrada'
+        'content': data_schema.dump(nueva_tarea)
+    }
+    
+    return jsonify(context)
+
+@app.route('/tarea')
+def get_tarea():
+    data = Tarea.query.all() # select id,descripcion,estado from tarea
+    data_schema = TareaSchema(many=True)
+    
+    context = {
+        'status':True,
+        'content':data_schema.dump(data)
     }
     
     return jsonify(context)
