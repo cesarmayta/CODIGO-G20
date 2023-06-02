@@ -39,7 +39,23 @@ def index():
     
     return jsonify(context)
 
-
+@app.route('/tarea',methods=['POST'])
+def setTarea():
+    descripcion = request.json['descripcion']
+    estado = request.json['estado']
+    
+    #insert into tarea...
+    nueva_tarea = Tarea(descripcion,estado)
+    db.session.add(nueva_tarea)
+    db.session.commit()
+    
+    context = {
+        'status':True,
+        'content':'tarea registrada'
+    }
+    
+    return jsonify(context)
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
