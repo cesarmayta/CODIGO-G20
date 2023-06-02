@@ -77,6 +77,52 @@ def get_tarea():
     
     return jsonify(context)
     
+    
+@app.route('/tarea/<id>')
+def get_tarea_by_id(id):
+    data = Tarea.query.get(id) #select * from tarea where id = ?
+    data_schema = TareaSchema()
+    
+    context = {
+        'status':True,
+        'content':data_schema.dump(data)
+    }
+    
+    return jsonify(context)
+
+@app.route('/tarea/<id>',methods=['PUT'])
+def update_tarea(id):
+    descripcion = request.json['descripcion']
+    estado = request.json['estado']
+    
+    tarea = Tarea.query.get(id)
+    tarea.descripcion = descripcion
+    tarea.estado = estado
+    db.session.commit()
+    
+    data_schema = TareaSchema()
+    
+    context = {
+        'status':True,
+        'content':data_schema.dump(tarea)
+    }
+    
+    return jsonify(context)
+
+@app.route('/tarea/<id>',methods=['DELETE'])
+def delete_tarea(id):
+    tarea = Tarea.query.get(id)
+    db.session.delete(tarea)
+    db.session.commit()
+    
+    data_schema = TareaSchema()
+    
+    context = {
+        'status':True,
+        'content':data_schema.dump(tarea)
+    }
+    
+    return jsonify(context)
 
 if __name__ == '__main__':
     app.run(debug=True)
