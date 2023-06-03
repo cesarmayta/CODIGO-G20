@@ -45,7 +45,7 @@ def index():
         'status':True,
         'content':'servidor activo'
     }
-    
+
     return jsonify(context)
 
 @app.route('/tarea',methods=['POST'])
@@ -123,7 +123,7 @@ def delete_tarea(id):
         'status':True,
         'content':data_schema.dump(tarea)
     }
-    
+
     return jsonify(context)
 
 if __name__ == '__main__':
