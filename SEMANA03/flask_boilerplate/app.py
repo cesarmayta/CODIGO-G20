@@ -1,7 +1,8 @@
-from flask import Flask, request
+from flask import Flask
 from db import db
+from ma import ma
 from flask_migrate import Migrate
-from controllers.countrys_controller import CountrysController
+from routes.countrys_router import countrys_router
 
 app = Flask(__name__)
 migrate = Migrate(app, db)
@@ -9,20 +10,10 @@ migrate = Migrate(app, db)
 app.app_context().push()
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/jobs'
 
+ma.init_app(app)
 db.init_app(app)
 
-@app.route('/')
-def index():
-    return 'Mi API de FLask funciona 😎'
-
-@app.route('/countrys', methods=['GET', 'POST'])
-def countrys():
-    controller = CountrysController()
-    method = request.method
-    if method == 'GET':
-        return controller.getAll()
-    else:
-        return controller.create()
+app.register_blueprint(countrys_router, url_prefix='/api-v1')
 
 if __name__ == '__main__':
     app.run(debug=True)
