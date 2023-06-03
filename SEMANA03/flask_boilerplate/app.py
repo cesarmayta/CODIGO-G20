@@ -1,10 +1,7 @@
-from flask import Flask
+from flask import Flask, request
 from db import db
 from flask_migrate import Migrate
-from models.users_model import UsersModel
-from models.countrys_model import CountrysModel
-from models.companys_model import CompanysModel
-from models.jobs_model import JobsModel
+from controllers.countrys_controller import CountrysController
 
 app = Flask(__name__)
 migrate = Migrate(app, db)
@@ -17,6 +14,15 @@ db.init_app(app)
 @app.route('/')
 def index():
     return 'Mi API de FLask funciona 😎'
+
+@app.route('/countrys', methods=['GET', 'POST'])
+def countrys():
+    controller = CountrysController()
+    method = request.method
+    if method == 'GET':
+        return controller.getAll()
+    else:
+        return controller.create()
 
 if __name__ == '__main__':
     app.run(debug=True)
