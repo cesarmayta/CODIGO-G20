@@ -1,6 +1,0 @@
-flask
-flask-sqlalchemy
-flask-marshmallow
-marshmallow-sqlalchemy
-mysqlclient
-flask-cors

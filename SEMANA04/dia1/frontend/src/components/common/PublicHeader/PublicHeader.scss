@@ -1,0 +1,198 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+.Header {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    .Header-container {
+        height: 100%;
+        display: flex;
+        .Header-icon {
+            font-family: "Luckiest Guy", cursive;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: auto;
+            a {
+                color: #000;
+                text-decoration: none;
+            }
+        }
+        .Header-nav-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                padding: 0 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100px;
+                height: 100%;
+                .Header-nav-item {
+                    color: rgba(51, 51, 51, 0.7);
+                    font-size: 1.1rem;
+                    cursor: pointer;
+                    font-weight: 600;
+                    text-decoration: none;
+                    &:hover {
+                        color: #000;
+                    }
+                    &.active {
+                        color: #000;
+                    }
+                }
+            }
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+        .Header-search-product {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-left: auto;
+            .Header-search-container {
+                display: flex;
+                align-items: center;
+                background-color: rgb(245, 245, 245);
+                padding: 8px 20px;
+                border-radius: 5px;
+                .Header-search-icon {
+                    color: rgba(51, 51, 51, 0.4);
+                    margin-right: 10px;
+                    font-size: 1.2rem;
+                }
+                .Header-search-input {
+                    width: 150px;
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    color: #000;
+                    font-weight: 600;
+                    &::placeholder {
+                        color: rgba(51, 51, 51, 0.5);
+                    }
+                }
+            }
+            @media screen and (max-width: 768px) {
+                display: none;
+            }
+        }
+        .Header-shoping-cart {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 20px;
+            svg {
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        .Header-user {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 20px;
+            svg {
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+        }
+        .Header-burger-button {
+            display: none;
+            @media (max-width: 768px) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-left: 20px;
+                svg {
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.Auth-modal {
+    .modal-content {
+        border-radius: 0;
+        .modal-header {
+            border-bottom: none;
+            padding: 1rem 1rem 0 1rem;
+        }
+        .modal-body {
+            padding: 0 1rem;
+            .Auth-modal-logo {
+                display: flex;
+                justify-content: center;
+            }
+            .Auth-modal-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 0 50px 40px 50px;
+                .Auth-modal-title {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                }
+                .Auth-modal-alert {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ff0000;
+                    color: #ff0000;
+                    margin-bottom: 1rem;
+                    &.hidden {
+                        display: none;
+                    }
+                }
+                .Auth-modal-form-group {
+                    width: 100%;
+                    margin-bottom: 1rem;
+                    .Auth-modal-label {
+                        font-weight: 600;
+                    }
+                    .Auth-modal-input {
+                        width: 100%;
+                        height: 40px;
+                        border: 1px solid rgba(51, 51, 51, 0.4);
+                        padding: 0 15px;
+                        outline: none;
+                        &:focus {
+                            border: 1px solid #000;
+                        }
+                    }
+                }
+                .Auth-modal-button {
+                    width: 100%;
+                    height: 40px;
+                    border: 1px solid #000;
+                    background-color: #000;
+                    color: #fff;
+                    font-weight: 600;
+                    cursor: pointer;
+                    outline: none;
+                    &:hover {
+                        background-color: #fff;
+                        color: #000;
+                    }
+                }
+                .Auth-modal-option {
+                    padding: 5px 0;
+                    span {
+                        cursor: pointer;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
