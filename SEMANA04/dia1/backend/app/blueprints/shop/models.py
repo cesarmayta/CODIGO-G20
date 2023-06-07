@@ -16,3 +16,7 @@ class Product(db.Model):
     @staticmethod
     def get_all():
         return Product.query.all()
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

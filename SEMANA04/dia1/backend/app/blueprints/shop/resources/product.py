@@ -21,4 +21,24 @@ class ProductResource(Resource):
         
         return context
     
+    def post(self):
+        data = request.get_json()
+        name = data['name']
+        description = data['description']
+        price = data['price']
+        
+        new_product = Product(name)
+        new_product.price = price
+        new_product.description = description
+        new_product.save()
+        
+        data_schema = ProductSchema()
+        
+        context = {
+            'status':True,
+            'content':data_schema.dump(new_product)
+        }
+        
+        return context
+    
 api.add_resource(ProductResource,'/product')
