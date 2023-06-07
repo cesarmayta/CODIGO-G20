@@ -17,6 +17,16 @@ class Product(db.Model):
     def get_all():
         return Product.query.all()
     
+    @staticmethod
+    def get_by_id(id):
+        return Product.query.get(id)
+    
     def save(self):
-        db.session.add(self)
+        if not self.id:
+            db.session.add(self)
         db.session.commit()
+        
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+        

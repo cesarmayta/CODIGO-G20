@@ -41,4 +41,39 @@ class ProductResource(Resource):
         
         return context
     
+    def put(self,id):
+        data = request.get_json()
+        name = data['name']
+        price = data['price']
+        description = data['description']
+        
+        upd_product = Product.get_by_id(id)
+        upd_product.name = name
+        upd_product.price = price
+        upd_product.save()
+        
+        data_schema = ProductSchema()
+        
+        context = {
+            'status':True,
+            'content':data_schema.dump(upd_product)
+        }
+        
+        return context
+    
+    def delete(self,id):
+        
+        del_product = Product.get_by_id(id)
+        del_product.delete()
+        
+        
+        context = {
+            'status':True,
+            'content':'registro eliminado'
+        }
+        
+        return context
+        
+    
 api.add_resource(ProductResource,'/product')
+api.add_resource(ProductResource,'/product/<id>',endpoint='product')
