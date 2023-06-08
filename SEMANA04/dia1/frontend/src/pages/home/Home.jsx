@@ -8,16 +8,16 @@ export const Home = () => {
   const [listOfProducts, setListOfProducts] = useState([]);
 
   useEffect(() => {
-    // fetch('http://127.0.0.1:5000/productos/lista')
-    //   .then(response => response.json())
-    //   .then(json => setListOfProducts(json.data))
-
     const getData = async () => {
-      const response = await fetch('http://127.0.0.1:5000/productos/listar')
-      const json = await response.json()
-      setListOfProducts(json.data)
-    }
-    getData()
+      const response = await fetch("http://127.0.0.1:5000/product");
+      const json = await response.json();
+      if (json.status === true) {
+        setListOfProducts(json.content);
+      } else {
+        console.log("error");
+      }
+    };
+    getData();
   }, []);
 
   return (
@@ -60,12 +60,10 @@ export const Home = () => {
       <div className="Show-products">
         <div className="u_wrapper">
           <div className="Show-products-container">
-            {
-              listOfProducts.length > 0 &&
+            {listOfProducts.length > 0 &&
               listOfProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
-              ))
-            }
+              ))}
           </div>
         </div>
       </div>

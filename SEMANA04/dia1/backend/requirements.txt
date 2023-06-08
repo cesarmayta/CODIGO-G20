@@ -7,6 +7,7 @@ flask-marshmallow
 Flask-migrate
 flask-cors
 flask-restful
+flask-jwt-extended
 
 #librerias
 mysqlclient

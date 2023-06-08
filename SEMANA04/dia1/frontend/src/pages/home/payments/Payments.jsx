@@ -46,8 +46,8 @@ export const Payments = () => {
             <h3>Carrito de compra</h3>
             <ul>
               {shoppingItems &&
-                shoppingItems.map((item) => (
-                  <li className="Payments-item">
+                shoppingItems.map((item, index) => (
+                  <li className="Payments-item" key={index}>
                     <div className="Payments-item-image">
                       {/* <img src={item.imagen} alt="Imagen Producto" /> */}
                     </div>

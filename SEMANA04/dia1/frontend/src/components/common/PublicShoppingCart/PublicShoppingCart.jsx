@@ -37,8 +37,8 @@ export const PublicShoppingCart = ({ showShopping, handleShowShopping }) => {
         <h3 className="Shopping-Cart-title">Carrito de compras</h3>
         <ul className="Shopping-Cart-menu">
           {shoppingItems &&
-            shoppingItems.map((item) => (
-              <li className="Shopping-Cart-item">
+            shoppingItems.map((item, index) => (
+              <li className="Shopping-Cart-item" key={index}>
                 <div className="Shopping-Cart-item-image">
                   {/* <img src={item.imagen} alt="Imagen Producto" /> */}
                 </div>

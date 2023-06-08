@@ -13,7 +13,6 @@ class ProductResource(Resource):
     def get(self):
         data = Product.get_all()
         data_schema = ProductSchema(many=True)
-        
         context = {
             'status':True,
             'content':data_schema.dump(data)
@@ -76,4 +75,4 @@ class ProductResource(Resource):
         
     
 api.add_resource(ProductResource,'/product')
-api.add_resource(ProductResource,'/product/<id>',endpoint='product')
+api.add_resource(ProductResource,'/product/<id>', endpoint='product')
