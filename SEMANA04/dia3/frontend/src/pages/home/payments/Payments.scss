@@ -1,0 +1,74 @@
+.Payments {
+  height: 100%;
+  min-height: calc(100vh - 70px);
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+
+  .Payments-container {
+    display: flex;
+    column-gap: 40px;
+
+    .Payments-card-data {
+      flex: 1;
+
+      .Payments-form-control {
+        margin-bottom: 20px;
+        input {
+          width: 100%;
+        }
+      }
+
+      .Payments-form-button {
+        background-color: #000;
+        color: #fff;
+        border: 1px solid #000;
+        outline: none;
+        height: 40px;
+        width: 100%;
+        font-weight: 600;
+
+        &:hover {
+          background-color: #fff;
+          color: #000;
+        }
+      }
+    }
+
+    .Payments-menu-items {
+      flex: 1;
+      list-style: none;
+      padding: 0;
+
+      .Payments-item {
+        display: flex;
+        justify-content: space-between;
+        column-gap: 10px;
+        margin-bottom: 20px;
+
+        .Payments-item-image {
+          height: 40px;
+          width: 40px;
+          border-radius: 5px;
+          background-color: gray;
+        }
+
+        .Payments-item-name {
+          font-weight: 600;
+          max-width: 300px;
+        }
+
+        .Payments-item-amount {
+          font-weight: 600;
+        }
+
+        .Shopping-Cart-item-price {}
+
+        .Shopping-Cart-item-trash {
+          color: red;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

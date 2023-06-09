@@ -1,0 +1,92 @@
+.huevo {
+    width: 126px;
+    height: 180px;
+    background-color: #5cb85c;
+    -moz-border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    -webkit-border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.NewHero {
+    height: 100%;
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .NewHero-container {
+        display: flex;
+        flex-wrap: wrap;
+        .NewHero-content,
+        .NewHero-art {
+            flex: 1;
+        }
+        .NewHero-content {
+            .NewHero-text {
+                color: rgba(51, 51, 51, 0.5);
+                font-size: 18px;
+                font-weight: 500;
+                span {
+                    color: initial;
+                }
+            }
+            .NewHero-title {
+                color: #000;
+                font-size: 3.5rem;
+                font-weight: 700;
+                span {
+                    background: linear-gradient(45deg, rgba(255, 0, 200, 0.3), rgba(140, 0, 255, 0.6));
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+            .NewHero-button {
+                button {
+                    background-color: #000;
+                    color: #fff;
+                    padding: 15px 25px;
+                    border-radius: 5px;
+                    outline: none;
+                    border: none;
+                    font-weight: 500;
+                    cursor: pointer;
+                }
+            }
+            .NewHero-indicators {
+                display: flex;
+                color: #000;
+                margin-top: 50px;
+                .NewHero-indicator-container {
+                    &:first-child {
+                        margin-right: 100px;
+                    }
+                    .NewHero-indicator-number {
+                        font-size: 2.5rem;
+                        font-weight: 700;
+                        padding-bottom: 5px;
+                    }
+                    .NewHero-indicator-text {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+        .NewHero-art {
+            display: flex;
+            justify-content: center;
+            img {
+                height: 500px;
+            }
+        }
+    }
+}
+
+.Show-products {
+    display: flex;
+    justify-content: center;
+    .Show-products-container {
+        display: grid;
+        gap: 3rem 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+    }
+}

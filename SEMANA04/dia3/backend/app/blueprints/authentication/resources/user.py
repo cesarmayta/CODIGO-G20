@@ -30,6 +30,7 @@ class UserResource(Resource):
     def post(self):
         try:
             json = request.get_json()
+            print(json)
             hashed_pwd = generate_password_hash(json['password'])
             exists_email = User.query.filter_by(email=json['email']).first()
             if not exists_email:
