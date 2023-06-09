@@ -1,7 +1,7 @@
 import { API_URL } from "../lib/Enviroments";
 
 export const signIn = async (user) => {
-  
+  console.log(user)
   const response = await fetch(`${API_URL}/signin`, {
     method: "POST",
     headers: {

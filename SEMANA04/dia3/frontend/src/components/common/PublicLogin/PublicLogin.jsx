@@ -11,7 +11,7 @@ export const PublicLogin = ({
 }) => {
   const { authentication, setAuthentication } = useContext(AdminContext);
   const [userCredentials, setUserCredentials] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -69,14 +69,14 @@ export const PublicLogin = ({
           </div>
           <div className="Auth-modal-form-group">
             <label htmlFor="username" className="Auth-modal-label">
-              Username
+              Email
             </label>
             <input
               type="text"
               className="Auth-modal-input"
-              id="username"
-              name="username"
-              value={userCredentials.username}
+              id="email"
+              name="email"
+              value={userCredentials.email}
               onChange={handleInputChange}
             />
           </div>
