@@ -1,4 +1,7 @@
-from flask_restful import Resource,Api
+import os
+import werkzeug
+
+from flask_restful import Resource,Api,reqparse
 from flask import request
 
 from .. import shop
@@ -10,9 +13,28 @@ from flask_jwt_extended import jwt_required
 
 api = Api(shop)
 
+class UploadImage(Resource):
+    
+    def post(self):
+        parse = reqparse.RequestParser()
+        parse.add_argument('file',type=werkzeug.datastructures.FileStorage,location='files')
+        args = parse.parse_args()
+        
+        image_file = args['file']
+        image_file.save(os.path.join(os.getcwd(),'app','static','uploads',image_file.filename))
+        
+        url_path = request.host_url + "static/uploads/" + str(image_file.filename)
+        
+        context = {
+            'status':True,
+            'content':url_path
+        }
+        
+        return context
+
 class ProductResource(Resource):
     
-    #@jwt_required()
+    @jwt_required()
     def get(self):
         data = Product.get_all()
         data_schema = ProductSchema(many=True)
@@ -29,10 +51,12 @@ class ProductResource(Resource):
         name = data['name']
         description = data['description']
         price = data['price']
+        image = data['image']
         
         new_product = Product(name)
         new_product.price = price
         new_product.description = description
+        new_product.image = image
         new_product.save()
         
         data_schema = ProductSchema()
@@ -78,7 +102,21 @@ class ProductResource(Resource):
         }
         
         return context
+    
+class ProductPublicResource(Resource):
+    
+    def get(self):
+        data = Product.get_all()
+        data_schema = ProductSchema(many=True)
+        context = {
+            'status':True,
+            'content':data_schema.dump(data)
+        }
+        
+        return context
         
     
 api.add_resource(ProductResource,'/product')
+api.add_resource(ProductPublicResource,'/product/public')
 api.add_resource(ProductResource,'/product/<id>', endpoint='product')
+api.add_resource(UploadImage,'/uploadimage')

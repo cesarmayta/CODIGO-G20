@@ -20,10 +20,11 @@ export const Products = () => {
     description: "",
     price: 0.0,
     stock: 0,
+    image:'',
     category_id: 0,
   });
   const [bandera, setBandera] = useState(false);
-
+/*
   useEffect(() => {
     const fetchData = async () => {
       const token = getToken();
@@ -34,13 +35,14 @@ export const Products = () => {
     };
     fetchData();
   }, []);
-
+*/
   useEffect(() => {
     setAdminTitle("Products");
     const fetchData = async () => {
       const token = getToken();
       const response = await getAllProducts(token);
-      setListOfProducts(response.data.data);
+      console.log(response.data.content)
+      setListOfProducts(response.data.content);
     };
     fetchData();
   }, [bandera]);
@@ -51,16 +53,10 @@ export const Products = () => {
       const token = getToken();
       const response = await postProduct(product, image, token);
       console.log(response);
-      // if (response) {
-      //   setBandera(!bandera);
-      //   setProduct({
-      //     productoNombre: "",
-      //     productoDescripcion: "",
-      //     productoPrecio: 0.0,
-      //     productoImagen: "",
-      //     categoriaId: 0,
-      //   });
-      // }
+      if (response.status) {
+        setBandera(!bandera);
+      
+      }
     } catch (error) {
       console.log(error);
     }
@@ -85,8 +81,9 @@ export const Products = () => {
     const file = event.target.files[0];
     try {
       const response = await uploadProductImage(file);
-      if (response.success) {
-        return setProduct({ ...product, [name]: value });
+      if (response.status) {
+        console.log(response.content)
+        return setProduct({ ...product, image: response.content });
       }
     } catch (error) {
       return console.log(error);
@@ -175,7 +172,7 @@ export const Products = () => {
             type="file"
             name="image"
             id="image"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={handleFileChange}
           />
         </div>
         <div className="form-group">

@@ -9,7 +9,7 @@ export const Home = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch("http://127.0.0.1:5000/product");
+      const response = await fetch("http://127.0.0.1:5000/product/public");
       const json = await response.json();
       if (json.status === true) {
         setListOfProducts(json.content);
