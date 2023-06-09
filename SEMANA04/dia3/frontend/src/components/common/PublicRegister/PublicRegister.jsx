@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { AdminContext } from "../../../contexts/AdminContext";
 import { signUp } from "../../../services/authServices";
+import { useNavigate } from "react-router-dom";
 
 export const PublicRegister = ({
   showRegister,
@@ -20,6 +21,8 @@ export const PublicRegister = ({
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     const { name, value } = e.currentTarget;
     setNewUSer({
@@ -30,25 +33,27 @@ export const PublicRegister = ({
 
   const createUser = async (e) => {
     e.preventDefault();
-    setRegisterState({
-      ...registerState,
-      isLoading: true,
-    });
+    console.log("iniciando registro...")
     try {
       const response = await signUp(newUser);
-      if (response.success) {
-        return setRegisterState({
+      console.log(response.data)
+      if (response.status === 201) {
+        console.log(response.data)
+        localStorage.setItem("token", response.data.access_token);
+        setRegisterState({
           ...registerState,
           isAuthenticated: true,
           isLoading: false,
         });
+        navigate("/admin-panel");
       }
-      return setRegisterState({
+      /*return setRegisterState({
         ...registerState,
         isError: true,
         errorMessage: response.message,
         isLoading: false,
       });
+      */
     } catch (error) {
       console.log(error);
       return setRegisterState({

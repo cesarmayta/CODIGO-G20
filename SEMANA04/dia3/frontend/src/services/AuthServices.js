@@ -1,7 +1,6 @@
 import { API_URL } from "../lib/Enviroments";
 
 export const signIn = async (user) => {
-  console.log(user)
   const response = await fetch(`${API_URL}/signin`, {
     method: "POST",
     headers: {
@@ -15,7 +14,6 @@ export const signIn = async (user) => {
 };
 
 export const signUp = async (user) => {
-  console.log(user)
   const response = await fetch(`${API_URL}/user`, {
     method: "POST",
     headers: {
@@ -24,7 +22,8 @@ export const signUp = async (user) => {
     body: JSON.stringify(user),
   });
   const data = await response.json();
-  return data;
+  const status = response.status;
+  return { data, status };
 };
 
 export const isAuth = () => {
