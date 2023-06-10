@@ -14,8 +14,8 @@ class IndexResource(Resource):
         }
         
         return context
-class SwaggerResource(Resource):
     
+class SwaggerResource(Resource):
     def get(self):
         with open('swagger.json') as f:
             return jsonify(json.load(f))

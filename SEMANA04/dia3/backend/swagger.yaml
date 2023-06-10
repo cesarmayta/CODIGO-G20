@@ -125,6 +125,25 @@ paths:
           description: "Internal server error"
       security:
       - BearerAuth: []
+  /uploadimage:
+    post:
+      tags:
+      - "product"
+      summary: "Subir imagen de un producto"
+      description: ""
+      operationId: "uploadImage"
+      consumes:
+        - "multipart/form-data"
+      parameters:
+        - name: "file"
+          in: "formData"
+          description: "Subir imagen"
+          required: true
+          type: "file"
+          format: "binary"
+      responses:
+        "200":
+          description: "Successful operation"
   /user:
     get:
       tags:
