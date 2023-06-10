@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from flask_cors import CORS
 from .blueprints.shop import shop
@@ -15,5 +15,9 @@ def create_app():
     
     app.register_blueprint(shop)
     app.register_blueprint(authentication)
+
+    @app.route('/swagger')
+    def swagger():
+        return render_template('swagger.html')
     
     return app
