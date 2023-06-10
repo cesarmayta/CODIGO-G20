@@ -7,7 +7,7 @@ from flask import request
 from .. import shop
 
 from ..models import Product
-from ..schemas import ProductSchema
+from ..schemas import ProductSchema,ProductPublicSchema
 
 from flask_jwt_extended import jwt_required
 
@@ -52,11 +52,13 @@ class ProductResource(Resource):
         description = data['description']
         price = data['price']
         image = data['image']
+        category_id = data['category_id']
         
         new_product = Product(name)
         new_product.price = price
         new_product.description = description
         new_product.image = image
+        new_product.category_id = category_id
         new_product.save()
         
         data_schema = ProductSchema()
@@ -107,7 +109,7 @@ class ProductPublicResource(Resource):
     
     def get(self):
         data = Product.get_all()
-        data_schema = ProductSchema(many=True)
+        data_schema = ProductPublicSchema(many=True)
         context = {
             'status':True,
             'content':data_schema.dump(data)
