@@ -16,16 +16,22 @@ class UserResource(Resource):
     
     @jwt_required()
     def get(self):
-        data = User.get_all()
+        try:
+          data = User.get_all()
 
-        data_schema = UserSchema(many=True)
-        
-        context = {
-            'status':True,
-            'content':data_schema.dump(data)
-        }
-        
-        return context
+          data_schema = UserSchema(many=True)
+          
+          context = {
+              'status':True,
+              'content':data_schema.dump(data)
+          }, 200
+          
+          return context
+        except Exception as e:
+          return {
+              'status': False,
+              'message': str(e)
+          }, 500
     
     def post(self):
         try:
