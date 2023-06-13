@@ -125,6 +125,52 @@ paths:
           description: "Internal server error"
       security:
       - BearerAuth: []
+  /category:
+    get:
+      tags:
+      - "category"
+      summary: "Listar todas las categorias"
+      description: ""
+      operationId: "getCategory"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Category"
+        "500":
+          description: "Internal sever error"
+      security:
+      - BearerAuth: []
+    post:
+      tags:
+      - "category"
+      summary: "Crear una nueva categoria"
+      description: ""
+      operationId: "addCategory"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - name: "body"
+          in: "body"
+          description: "Request json"
+          required: true
+          schema:
+            $ref: "#/definitions/Category"
+      responses:
+        "200":
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Category"
+        "500":
+          description: "Internal server error"
+      security:
+      - BearerAuth: []
   /uploadimage:
     post:
       tags:
@@ -247,6 +293,21 @@ definitions:
         type: "number"
         format: "double"
         example: 99.99
+      category_id:
+        type: "number"
+        format: "int64"
+        example: 1
+  Category:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+        readOnly: true
+      name:
+        type: "string"
+        example: "Zapatillas"
   AuthUser:
     type: "object"
     properties:

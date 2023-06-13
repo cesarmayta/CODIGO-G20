@@ -80,6 +80,7 @@ class ProductResource(Resource):
         upd_product = Product.get_by_id(id)
         upd_product.name = name
         upd_product.price = price
+        upd_product.description = description
         upd_product.save()
         
         data_schema = ProductSchema()
