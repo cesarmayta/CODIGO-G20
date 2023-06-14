@@ -13,3 +13,4 @@ flask-jwt-extended
 mysqlclient
 python-dotenv
 marshmallow-sqlalchemy
+pytest
