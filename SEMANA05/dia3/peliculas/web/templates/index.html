@@ -1,1 +1,7 @@
 <h1>MIS PELICULAS FAVORITAS</h1>
+{% for pelicula in peliculas %}
+    {{pelicula.titulo}}<br/>
+    <img src="{{pelicula.imagen}}" width="150px"/><br/>
+    {{pelicula.duracion}}<br/>
+    <hr/>
+{% endfor %}
