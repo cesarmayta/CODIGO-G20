@@ -36,10 +36,25 @@ def suma(request,n1,n2):
     resultado = n1 + n2
     return HttpResponse('<h1>resultado es '+ str(resultado) + '</h1>')
 
+""" crear ruta calculadora que reciba 3 parametros , 
+    n1, n2 y ope si ope es igual a suma debera
+    sumar , si es igual a resta restar
+"""
+def calculadora(request,n1,n2,ope):
+    if(ope == "suma"):
+        resultado = n1 + n2
+    elif(ope=="resta"):
+        resultado = n1 - n2
+    else:
+        resultado = 0
+    
+    return HttpResponse('<h1>Resultado es ' + str(resultado) + '</h1>')
+
 urlpatterns = [
     path('',index),
     path('api',api),
     path('saludo',saludo),
     path('suma/<int:n1>/<int:n2>',suma),
+    path('calculadora/<int:n1>/<int:n2>/<ope>',calculadora),
     path('admin/', admin.site.urls),
 ]
