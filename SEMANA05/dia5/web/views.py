@@ -11,5 +11,9 @@ def index(request):
     }
     return render(request,'index.html',context)
 
-def post(request):
-    return render(request,'post.html')
+def post(request,post_id):
+    obj_post = Post.objects.get(pk=post_id)
+    context = {
+        'post':obj_post
+    }
+    return render(request,'post.html',context)

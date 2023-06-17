@@ -7,7 +7,7 @@
             <!-- Post preview-->
             {% for post in posts %}
             <div class="post-preview">
-                <a href="/post">
+                <a href="/post/{{post.id}}">
                     <h2 class="post-title">{{post.tittle}}</h2>
                     <h3 class="post-subtitle">{{post.description}}</h3>
                 </a>
