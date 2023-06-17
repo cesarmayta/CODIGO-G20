@@ -5,17 +5,19 @@
         <div class="col-md-10 col-lg-8 col-xl-7">
             
             <!-- Post preview-->
+            {% for post in posts %}
             <div class="post-preview">
                 <a href="/post">
-                    <h2 class="post-title">Man must explore, and this is exploration at its greatest</h2>
-                    <h3 class="post-subtitle">Problems look mighty small from 150 miles up</h3>
+                    <h2 class="post-title">{{post.tittle}}</h2>
+                    <h3 class="post-subtitle">{{post.description}}</h3>
                 </a>
                 <p class="post-meta">
                     Posted by
-                    <a href="#!">Start Bootstrap</a>
-                    on September 24, 2023
+                    <a href="#!">{{post.autor.name}}</a>
+                    on {{post.date_register}}
                 </p>
             </div>
+            {% endfor %}
             <!-- Divider-->
             <hr class="my-4" />
 
