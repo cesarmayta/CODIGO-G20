@@ -18,3 +18,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+class Comment(models.Model):
+    post = models.ForeignKey(Post,on_delete=models.RESTRICT)
+    text = models.TextField()
+    date_register = models.DateField(auto_now_add=True)
+    
+    
