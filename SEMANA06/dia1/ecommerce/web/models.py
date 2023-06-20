@@ -39,6 +39,8 @@ class ProductoImagen(models.Model):
     
     class Meta:
         db_table = 'tbl_producto_imagen'
+        verbose_name = 'Galeria de Fotos'
+        verbose_name_plural = 'Galeria de Fotos'
         
     def __str__(self):
         return self.producto.nombre
