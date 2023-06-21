@@ -1,0 +1,508 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="cont maincont">
+
+    <div class="section-top">
+
+        <h1 class="maincont-ttl">Shop</h1>
+        <ul class="b-crumbs">
+            <li><a href="index.html">Home</a></li>
+            <li>Catalog - Gallery</li>
+        </ul>
+        <div class="section-top-sort">
+            <div class="section-view">
+                <p>View</p>
+                <div class="dropdown-wrap">
+                    <p class="dropdown-title section-view-ttl">Gallery</p>
+                    <ul class="dropdown-list">
+                        <li>
+                            <a href="catalog-list.html">List</a>
+                        </li>
+                        <li class="active">
+                            <a href="catalog-gallery.html">Gallery</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section-sort">
+                <p>Sort</p>
+                <div class="dropdown-wrap">
+                    <p class="dropdown-title section-sort-ttl">Newness</p>
+                    <ul class="dropdown-list">
+                        <li>
+                            <a href="#">Popularity</a>
+                        </li>
+                        <li>
+                            <a href="#">Average rating</a>
+                        </li>
+                        <li class="active">
+                            <a href="#">Newness</a>
+                        </li>
+                        <li>
+                            <a href="#">Price: low to high</a>
+                        </li>
+                        <li>
+                            <a href="#">Price: high to low</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <form method="post" class="products-per-page">
+                <p>Per Page</p>
+                <select>
+                    <option value="12" selected="selected">12</option>
+                    <option value="24">24</option>
+                    <option value="48">48</option>
+                    <option value="-1">All</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <!-- To make Sidebar "Not Sticky" just remove  id="section-list-withsb" -->
+    <div class="section-wrap-withsb">
+        <aside class="blog-sb-widgets section-sb" id="section-sb">
+            <div class="theiaStickySidebar">
+                <p class="section-filter-toggle filter_hidden">
+                    <a href="#" id="section-filter-toggle-btn">Show Filter</a>
+                </p>
+                <div class="section-filter">
+                    <div class="section-filter">
+                        <div class="blog-sb-widget multishopcategories_widget">
+                            <h3 class="widgettitle">Categories</h3>
+                            <div class="section-sb-current">
+                                <ul class="section-sb-list">
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Electricity <span class="count">6</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Fasteners <span class="count">8</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Lighting <span class="count">6</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Other <span class="count">9</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Pipes <span class="count">9</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Sanitary Engineering <span class="count">7</span></span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span class="section-sb-label">Tools <span class="count">21</span></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        <div class="blog-sb-widget multishopfeaturedproducts_widget">
+                            <h3 class="widgettitle">Featured</h3>
+                            <div class="products-featured-wrap">
+                                <div class="products-featured">
+                                    <p class="products-featured-categ">
+                                        <a href="#">Tools</a>
+                                    </p>
+                                    <h5 class="products-featured-ttl"><a href="product.html">Rechargeable Battery</a></h5>
+                                    <p class="products-featured-price">$201.00</p>
+                                </div>
+                                <div class="products-featured">
+                                    <p class="products-featured-categ">
+                                        <a href="#">Pipes</a>
+                                    </p>
+                                    <h5 class="products-featured-ttl"><a href="product.html">Wholesale Brass</a></h5>
+                                    <p class="products-featured-price">$15.00</p>
+                                </div>
+                                <div class="products-featured">
+                                    <p class="products-featured-categ">
+                                        <a href="#">Pipes</a>
+                                    </p>
+                                    <h5 class="products-featured-ttl"><a href="product.html">Fittings Pipe</a></h5>
+                                    <p class="products-featured-price">$77.00</p>
+                                </div>
+                                <div class="products-featured">
+                                    <p class="products-featured-categ">
+                                        <a href="#">Pipes</a>
+                                    </p>
+                                    <h5 class="products-featured-ttl"><a href="product.html">Fittings Pipe</a></h5>
+                                    <p class="products-featured-price">$105.00</p>
+                                </div>
+                                <div class="products-featured">
+                                    <p class="products-featured-categ">
+                                        <a href="#">Fasteners</a>
+                                    </p>
+                                    <h5 class="products-featured-ttl"><a href="product.html">Flat Bolt</a></h5>
+                                    <p class="products-featured-price">$45.00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-sb-widget multishopbrands_widget">
+                            <h3 class="widgettitle">Brands</h3>
+                            <ul class="brands-list-sb">
+                                <li>
+                                    <a href="#">HOOK <span class="count">5</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">Fuel Tank <span class="count">7</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">BMP <span class="count">17</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">BISON <span class="count">9</span></a>
+                                </li>
+                                <li>
+                                    <a href="#">AIR <span class="count">6</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>        <div class="section-list-withsb" id="section-list-withsb">
+        <div class="theiaStickySidebar">
+
+            <!--
+            Gallery Item Columns:
+
+            With Sidebar:
+            prod-items-4 : cf-sm-6 cf-md-6 cf-lg-3 col-xs-6 col-sm-6 col-md-6 col-lg-3
+            prod-items-3 : cf-sm-6 cf-md-6 cf-lg-4 col-xs-6 col-sm-6 col-md-6 col-lg-4
+
+            Without Sidebar:
+            prod-items-4 : cf-sm-6 cf-md-4 cf-lg-3 col-xs-6 col-sm-6 col-md-4 col-lg-3
+            prod-items-3 : cf-sm-6 cf-md-4 cf-lg-4 col-xs-6 col-sm-6 col-md-4 col-lg-4
+
+            For Both:
+            prod-items-2 : cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6
+            prod-items-1 : col-lg-12
+            -->
+            <div class="row prod-items prod-items-2">
+                <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                    <div class="sectgl prod-i">
+                        <div class="prod-i-top">
+                            <a class="prod-i-img" href="product.html">
+                                <img src="http://placehold.it/290x258" alt="">
+                            </a>
+                            <div class="prod-i-actions">
+                                <div class="prod-i-actions-in">
+                                    <div class="prod-li-favorites">
+                                        <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                    </div>
+                                    <p class="prod-quickview">
+                                        <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                    </p>
+                                    <p class="prod-i-cart">
+                                        <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                    </p>
+                                    <p class="prod-li-compare">
+                                        <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prod-i-bot">
+                            <div class="prod-i-info">
+                                <p class="prod-i-price">$120.00</p>
+                                <p class="prod-i-categ"><a href="catalog-gallery.html">Lighting</a></p>
+                            </div>
+                            <h3 class="prod-i-ttl"><a href="product.html">Searchlight Portable</a></h3>
+                        </div>
+                    </div>
+                </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$120.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Lighting</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Searchlight Portable</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x195" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price"><del>$15.00</del> $20.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Other</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Flooring</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$18.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Other</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Pneumatic Coil Hose</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$45.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Other</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Door Hinge Metal</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="prod-i-badge"><span>Sale</span></p>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$70.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Electricity</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Universal Plug</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price"><del>$12.00</del> $22.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Tools</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Drill Tool Kit</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$24.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Pipes</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Metal-Plastic Pipes</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$31.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Electricity</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">LED Lamp</a></h3>
+                    </div>
+                </div>
+            </article>            <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+                <div class="sectgl prod-i">
+                    <div class="prod-i-top">
+                        <a class="prod-i-img" href="product.html">
+                            <img src="http://placehold.it/290x258" alt="">
+                        </a>
+                        <div class="prod-i-actions">
+                            <div class="prod-i-actions-in">
+                                <div class="prod-li-favorites">
+                                    <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                                </div>
+                                <p class="prod-quickview">
+                                    <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                                </p>
+                                <p class="prod-i-cart">
+                                    <a href="#" class="hover-label prod-addbtn"><i class="icon ion-android-cart"></i><span>Add to Cart</span></a>
+                                </p>
+                                <p class="prod-li-compare">
+                                    <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                        <p class="prod-i-badge"><span class="badge-1">Top seller</span></p>
+                    </div>
+                    <div class="prod-i-bot">
+                        <div class="prod-i-info">
+                            <p class="prod-i-price">$10.00</p>
+                            <p class="prod-i-categ"><a href="catalog-gallery.html">Electricity</a></p>
+                        </div>
+                        <h3 class="prod-i-ttl"><a href="product.html">Power Socket</a></h3>
+                    </div>
+                </div>
+            </article>    </div>
+            <ul class="page-numbers">
+                <li><span class="page-numbers current">1</span></li>
+                <li><a class="page-numbers" href="#">2</a></li>
+                <li><a class="page-numbers" href="#">3</a></li>
+                <li><a class="page-numbers" href="#">4</a></li>
+                <li><a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+        </div><!-- .theiaStickySidebar -->
+    </div><!-- .section-list-withsb -->
+    </div><!-- .section-wrap-withsb -->
+
+</div>
+{% endblock %}
