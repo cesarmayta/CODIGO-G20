@@ -1,13 +1,15 @@
+{% load static %}
 <div class="site-header">
 
     <p class="h-logo">
-        <a href="index.html"><img src="img/logo.png" alt="MultiShop"></a>
+        <a href="/"><img src="{% static 'img/logo.png' %}" alt="MultiShop"></a>
     </p><!--
 No Space
 --><div class="h-shop">
 
-    <form method="get" action="#" class="h-search" id="h-search">
-        <input type="text" placeholder="Search...">
+    <form method="post" action="/busqueda" class="h-search" id="h-search">
+        {% csrf_token %}
+        <input type="text" placeholder="busqueda..." name="nombre">
         <button type="submit"><i class="ion-search"></i></button>
     </form>
 

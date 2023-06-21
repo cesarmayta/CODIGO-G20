@@ -24,7 +24,7 @@
                     <ul class="brands-list-sb">
                         {% for marca in marcas %}
                         <li>
-                            <a href="#">{{marca.nombre}} 
+                            <a href="{% url 'web:marca' marca.id %}">{{marca.nombre}} 
                                 <span class="count">{{marca.producto_set.all.count}}</span></a>
                         </li>
                         {% endfor %}

@@ -3,7 +3,7 @@
         <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
             <div class="sectgl prod-i">
                 <div class="prod-i-top">
-                    <a class="prod-i-img" href="/producto">
+                    <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
                         {% if producto.imagen %}
                             <img src="{{producto.imagen.url}}" alt="">
                         {% else %}
@@ -21,9 +21,9 @@
                 <div class="prod-i-bot">
                     <div class="prod-i-info">
                         <p class="prod-i-price">${{producto.precio}}</p>
-                        <p class="prod-i-categ"><a href="catalog-gallery.html">{{producto.categoria}}</a></p>
+                        <p class="prod-i-categ"><a href="{% url 'web:categoria' producto.categoria.id %}">{{producto.categoria}}</a></p>
                     </div>
-                    <h3 class="prod-i-ttl"><a href="/producto">{{producto.nombre}}</a></h3>
+                    <h3 class="prod-i-ttl"><a href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a></h3>
                 </div>
             </div>
         </article>
