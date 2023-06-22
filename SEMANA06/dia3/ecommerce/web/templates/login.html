@@ -33,18 +33,19 @@
                     </form>
                 </div>
                 <div class="auth-col">
-                    <h2>Register</h2>
-                    <form method="post" class="register">
+                    <h2>Registro</h2>
+                    <form method="post" class="register" action="">
+                        {% csrf_token %}
                         <p>
                             <label for="reg_email">Email <span class="required">*</span></label>
-                            <input type="email" id="reg_email">
+                            <input type="email" id="reg_email" name="usuario">
                         </p>
                         <p>
                             <label for="reg_password">Password <span class="required">*</span></label>
-                            <input type="password" id="reg_password">
+                            <input type="password" id="reg_password" name="password">
                         </p>
                         <p class="auth-submit">
-                            <input type="submit" value="Register">
+                            <input type="submit" value="Registro Nuevo Usuario">
                         </p>
                     </form>
                 </div>
