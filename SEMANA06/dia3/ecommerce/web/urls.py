@@ -10,6 +10,7 @@ urlpatterns = [
     path('marca/<int:marca_id>',views.productos_por_marca,name='marca'),
     path('busqueda',views.producto_por_nombre,name='busqueda'),
     path('producto/<int:producto_id>',views.producto_detalle,name='producto'),
-    path('carrito',views.carrito,name='carrito'),
-    path('agregarCarrito/<int:producto_id>',views.agregar_carrito,name='agregarCarrito')
+    path('cart',views.carrito,name='carrito'),
+    path('cart/add/<int:producto_id>',views.agregar_carrito,name='cart_add'),
+    path('cart/del/<int:producto_id>',views.eliminar_producto_carrito,name='cart_del')
 ]
