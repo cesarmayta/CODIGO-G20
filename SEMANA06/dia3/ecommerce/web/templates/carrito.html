@@ -8,38 +8,40 @@
             <li>Cart</li>
         </ul><div class="page-styling">
         <div class="woocommerce prod-litems section-list">
+            {%for key,value in request.session.cart.items %}
             <article class="prod-li sectls">
                 <div class="prod-li-inner">
                     <a href="product.html" class="prod-li-img">
-                        <img src="http://placehold.it/290x258" alt="">
+                        <img src="{{value.imagen}}" alt="">
                     </a>
                     <div class="prod-li-cont">
                         <div class="prod-li-ttl-wrap">
                                 <p>
-                                    <a href="#">Lighting</a>
+                                    <a href="#">{{value.categoria}}</a>
                                 </p>
-                                <h3><a href="product.html">Searchlight Portable</a></h3>
+                                <h3><a href="#">{{value.nombre}}</a></h3>
                         </div>
                         <div class="prod-li-prices">
                             <div class="prod-li-price-wrap">
-                                <p>Price</p>
-                                <p class="prod-li-price">$120.00</p>
+                                <p>Precio</p>
+                                <p class="prod-li-price">${{value.precio}}</p>
                             </div>
                             <div class="prod-li-qnt-wrap">
                                 <p class="qnt-wrap prod-li-qnt">
                                     <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
-                                    <input type="text" value="1">
+                                    <input type="text" value="{{value.cantidad}}">
                                     <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
                                 </p>
                             </div>
                             <div class="prod-li-total-wrap">
-                                <p>Total</p>
-                                <p class="prod-li-total">$120.00</p>
+                                <p>SubTotal</p>
+                                <p class="prod-li-total">${{value.subtotal}}</p>
                             </div>
                         </div>
                     </div>  
                 </div>
             </article>
+            {% endfor %}
         </div>
         <div class="cart-actions">
             <div class="coupon">
