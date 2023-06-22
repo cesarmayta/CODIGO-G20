@@ -48,14 +48,20 @@
                         <p class="prod-excerpt">
                             {{producto.descripcion | safe }}
                         </p>
+                        <form action="{% url 'web:cart_add' producto.id %}" method="post">
+                        {% csrf_token %}
                         <div class="prod-add">
-                            <button type="submit" class="button"><i class="icon ion-android-cart"></i> Add to cart</button>
                             <p class="qnt-wrap prod-li-qnt">
+                                
                                 <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
-                                <input type="text" value="1">
+                                <input type="text" value="1" name="cantidad">
                                 <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                            
                             </p>
+                            <button type="submit" class="button"><i class="icon ion-android-cart"></i> Add to cart</button>
+                            
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
