@@ -12,7 +12,11 @@
             <article class="prod-li sectls">
                 <div class="prod-li-inner">
                     <a href="#" class="prod-li-img">
-                        <img src="{{value.imagen}}" alt="">
+                        {% if value.imagen %}
+                            <img src="{{value.imagen}}" alt="">
+                        {% else %}
+                            <img src="http://placehold.it/290x258" alt="">
+                        {% endif %}
                     </a>
                     <div class="prod-li-cont">
                         <div class="prod-li-ttl-wrap">
@@ -49,7 +53,7 @@ No Space
                             <p class="prod-li-rating-count">12</p>
                         </div>
                         <p class="prod-li-add">
-                            <a href="#" class="button hover-label prod-addbtn"><i class="icon ion-close-round"></i><span>Remove</span></a>
+                            <a href="/cart/del/{{value.producto_id}}" class="button hover-label prod-addbtn"><i class="icon ion-close-round"></i><span>Eliminar</span></a>
                         </p>
                         <p class="prod-li-compare">
                             <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
@@ -77,7 +81,8 @@ No Space
                 <input type="submit" class="button" value="Apply">
             </div>
             <div class="cart-collaterals">
-                <a href="#" class="checkout-button button">Proceed to checkout</a>
+                <a href="/cart/clear" class="checkout-button button">Limpiar</a>
+                <a href="#" class="checkout-button button">Realizar Compra</a>
                 <div class="order-total">
                     <p class="cart-totals-ttl">Total</p>
                     <p class="cart-totals-val">$510.00</p>
