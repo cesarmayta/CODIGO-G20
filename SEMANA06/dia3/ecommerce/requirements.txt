@@ -1,0 +1,5 @@
+django==3.2
+mysqlclient
+Pillow
+django-ckeditor
+django-admin-tailwind

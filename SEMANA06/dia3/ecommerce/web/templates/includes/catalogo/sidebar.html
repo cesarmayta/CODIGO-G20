@@ -1,0 +1,36 @@
+<aside class="blog-sb-widgets section-sb" id="section-sb">
+    <div class="theiaStickySidebar">
+        <p class="section-filter-toggle filter_hidden">
+            <a href="#" id="section-filter-toggle-btn">Filtrar</a>
+        </p>
+        <div class="section-filter">
+            <div class="section-filter">
+                <div class="blog-sb-widget multishopcategories_widget">
+                    <h3 class="widgettitle">Categorias</h3>
+                    <div class="section-sb-current">
+                        <ul class="section-sb-list">
+                            {% for categoria in categorias %}
+                            <li>
+                                <a href="{% url 'web:categoria' categoria.id %}">
+                                    <span class="section-sb-label">{{categoria.nombre}} 
+                                    <span class="count">{{categoria.producto_set.all.count}}</span></span></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="blog-sb-widget multishopbrands_widget">
+                    <h3 class="widgettitle">Marcas</h3>
+                    <ul class="brands-list-sb">
+                        {% for marca in marcas %}
+                        <li>
+                            <a href="{% url 'web:marca' marca.id %}">{{marca.nombre}} 
+                                <span class="count">{{marca.producto_set.all.count}}</span></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

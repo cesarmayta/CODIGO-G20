@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="cont maincont">
+    <div class="cont maincont">
+        <ul class="b-crumbs">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="catalog-gallery.html">Catalog</a></li>
+            <li>Product</li>
+        </ul>            
+        <article>
+            <div class="prod">
+                <div class="prod-slider-wrap prod-slider-shown">
+                    <div class="flexslider prod-slider" id="prod-slider">
+                        <ul class="slides">
+                            {% for galeria in producto.productoimagen_set.all %}
+                            <li>
+                                <a data-fancybox-group="prod" class="fancy-img" href="{{galeria.imagen.url}}">
+                                    <img src="{{galeria.imagen.url}}" alt="">
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="prod-slider-count"><p><span class="count-cur">1</span> / <span class="count-all">2</span></p><p class="hover-label prod-slider-zoom"><i class="icon ion-search"></i><span>Zoom In</span></p></div>
+                    </div>
+                    <div class="flexslider prod-thumbs" id="prod-thumbs">
+                        <ul class="slides">
+                            {% for galeria in producto.productoimagen_set.all %}
+                                <li>
+                                    <img src="{{galeria.imagen.url}}" alt="">
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="prod-cont">
+                    <div class="prod-rating-wrap">
+                        <p data-rating="4" class="prod-rating">
+                            <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i class="rating-ico" title="3"></i>
+                            <i class="rating-ico" title="4"></i><i class="rating-ico" title="5"></i>
+                        </p>
+                        <p class="prod-rating-count">7</p>
+                    </div>
+                    <p class="prod-categs"><a href="#">{{producto.categoria.nombre}}</a>, <a href="#">{{producto.marca.nombre}}</a></p>
+                    <h1>{{producto.nombre}}</h1>
+                    <div class="variations_form cart">
+                        <p class="prod-price">${{producto.precio}}</p>
+                        <p class="prod-excerpt">
+                            {{producto.descripcion | safe }}
+                        </p>
+                        <div class="prod-add">
+                            <button type="submit" class="button"><i class="icon ion-android-cart"></i> Add to cart</button>
+                            <p class="qnt-wrap prod-li-qnt">
+                                <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                <input type="text" value="1">
+                                <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}
