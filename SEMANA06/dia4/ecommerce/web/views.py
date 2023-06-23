@@ -142,10 +142,42 @@ def login_usuario(request):
                 'mensaje':'Datos Incorrectos'
             }
             
-    return render(request,'login.html',context)  
+    return render(request,'login.html',context) 
+
+def actualizar_cliente(request):
+    mensaje = ''
+    if request.method == "POST":
+        frm_cliente = ClienteForm(request.POST)
+        if frm_cliente.is_valid():
+            data = frm_cliente.cleaned_data
+            
+            #actualizar el usuario
+            act_usuario = User.objects.get(pk=request.user.id)
+            act_usuario.first_name = data['nombre']
+            act_usuario.last_name = data['apellidos']
+            act_usuario.email = data['email']
+            act_usuario.save()
+            
+            mensaje = 'Datos Actualizados con Exito'
+        else:
+            mensaje = 'No se pudo actualizar los datos'
+            
+    context = {
+        'mensaje':mensaje,
+        'form':frm_cliente
+    }
+    
+    return render(request,'cuenta.html',context)
         
 def cuenta_usuario(request):
-    frm_cliente = ClienteForm()
+    
+    data_cliente = {
+        'nombre':request.user.first_name,
+        'apellidos':request.user.last_name,
+        'email':request.user.email
+    }
+    
+    frm_cliente = ClienteForm(data_cliente)
     context = {
         'form':frm_cliente
     }

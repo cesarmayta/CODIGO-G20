@@ -10,9 +10,12 @@
         <article class="page-cont">
         <div class="page-styling">
             
-            <form method="post" action="">
+            <form method="post" action="{% url 'web:cliente_act' %}">
                 {% csrf_token %}
                 {{form}}
+                <p class="auth-submit">
+                    <input type="submit" value="Actualizar Datos">
+                </p>
             </form>
         </div>
         </article>
