@@ -158,6 +158,15 @@ def actualizar_cliente(request):
             act_usuario.email = data['email']
             act_usuario.save()
             
+            #registrar cliente
+            new_cliente = Cliente()
+            new_cliente.usuario = act_usuario
+            new_cliente.dni = data['dni']
+            new_cliente.direccion = data['direccion']
+            new_cliente.telefono = data['telefono']
+            new_cliente.fecha_nacimiento = data['fecha_nacimiento']
+            new_cliente.save()
+            
             mensaje = 'Datos Actualizados con Exito'
         else:
             mensaje = 'No se pudo actualizar los datos'
@@ -171,11 +180,24 @@ def actualizar_cliente(request):
         
 def cuenta_usuario(request):
     
-    data_cliente = {
-        'nombre':request.user.first_name,
-        'apellidos':request.user.last_name,
-        'email':request.user.email
-    }
+    try:
+        obj_cliente = Cliente.objects.get(usuario=request.user)
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email,
+            'direccion':obj_cliente.direccion,
+            'telefono':obj_cliente.telefono,
+            'dni':obj_cliente.dni,
+            'fecha_nacimiento':obj_cliente.fecha_nacimiento
+        }
+        
+    except:
+        data_cliente = {
+            'nombre':request.user.first_name,
+            'apellidos':request.user.last_name,
+            'email':request.user.email
+        }
     
     frm_cliente = ClienteForm(data_cliente)
     context = {
