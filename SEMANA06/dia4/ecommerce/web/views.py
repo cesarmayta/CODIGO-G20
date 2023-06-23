@@ -109,6 +109,8 @@ def limpiar_carrito(request):
 """
 from django.contrib.auth.models import User
 from django.contrib.auth import login,authenticate
+from .models import Cliente
+from .forms import ClienteForm
 
 def crear_usuario(request):
     if request.method == 'POST':
@@ -143,7 +145,11 @@ def login_usuario(request):
     return render(request,'login.html',context)  
         
 def cuenta_usuario(request):
-    return render(request,'cuenta.html')
+    frm_cliente = ClienteForm()
+    context = {
+        'form':frm_cliente
+    }
+    return render(request,'cuenta.html',context)
             
     
     

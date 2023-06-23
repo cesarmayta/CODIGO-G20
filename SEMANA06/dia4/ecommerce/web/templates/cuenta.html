@@ -2,14 +2,18 @@
 {% block content %}
 <main id="main" class="site-main">
     <div class="cont maincont">
-        <h1 class="maincont-ttl">Cuenta</h1>
+        <h1 class="maincont-ttl">Bienvenido  - {{user.username}}</h1>
         <ul class="b-crumbs">
             <li><a href="index.html">Home</a></li>
             <li>Cuenta de Usuario</li>
         </ul>
         <article class="page-cont">
         <div class="page-styling">
-            Bienvenido  - {{user.username}}
+            
+            <form method="post" action="">
+                {% csrf_token %}
+                {{form}}
+            </form>
         </div>
         </article>
     </div>
