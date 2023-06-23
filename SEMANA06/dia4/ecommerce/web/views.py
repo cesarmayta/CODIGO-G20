@@ -108,42 +108,56 @@ def limpiar_carrito(request):
 -------- USUARIOS Y CLIENTES -----------------------
 """
 from django.contrib.auth.models import User
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.decorators import login_required
+
 from .models import Cliente
 from .forms import ClienteForm
 
 def crear_usuario(request):
+    pagina_destino = request.GET.get('next','/cuenta')
+    context = {
+        'destino':pagina_destino
+    }
     if request.method == 'POST':
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
+        data_destino = request.POST['destino']
         
         nuevo_usuario = User.objects.create_user(username=data_usuario,password=data_password)
         if nuevo_usuario is not None:
             login(request,nuevo_usuario)
-            return redirect('/cuenta')
+            return redirect(data_destino)
         
     
-    return render(request,'login.html')
-      
+    return render(request,'login.html',context)
+
+    
 def login_usuario(request):
-    context = {}
+    pagina_destino = request.GET.get('next','/cuenta')
+    context = {
+        'destino':pagina_destino
+    }
     if request.method == 'POST':
         data_usuario = request.POST['usuario']
         data_password = request.POST['password']
+        data_destino = request.POST['destino']
         
         usuario_auth = authenticate(request,
                                      username=data_usuario,
                                      password=data_password)
         if usuario_auth is not None:
             login(request,usuario_auth)
-            return redirect('/cuenta')
+            return redirect(data_destino)
         else:
             context = {
+                'destino':pagina_destino,
                 'mensaje':'Datos Incorrectos'
             }
             
     return render(request,'login.html',context) 
 
+@login_required(login_url='/auth/login')
 def actualizar_cliente(request):
     mensaje = ''
     if request.method == "POST":
@@ -185,9 +199,11 @@ def actualizar_cliente(request):
     }
     
     return render(request,'cuenta.html',context)
-        
+
+@login_required(login_url='/auth/login')
 def cuenta_usuario(request):
-    
+    data = {
+    }
     try:
         obj_cliente = Cliente.objects.get(usuario=request.user)
         data_cliente = {
@@ -199,19 +215,37 @@ def cuenta_usuario(request):
             'dni':obj_cliente.dni,
             'fecha_nacimiento':obj_cliente.fecha_nacimiento
         }
+        data.update(data_cliente)
         
     except:
-        data_cliente = {
-            'nombre':request.user.first_name,
-            'apellidos':request.user.last_name,
-            'email':request.user.email
-        }
-    
-    frm_cliente = ClienteForm(data_cliente)
+        if request.user.first_name != '':
+            data.update({'nombre':request.user.first_name})
+        
+        if request.user.last_name != '':
+            data.update({'apellidos':request.user.last_name})
+            
+        if request.user.email != '':
+            data.update({'email':request.user.last_name})
+        
+        
+    print(data)
+    if data == {} :
+        frm_cliente = ClienteForm()
+    else:
+        frm_cliente = ClienteForm(data)
+        
     context = {
         'form':frm_cliente
     }
     return render(request,'cuenta.html',context)
+
+def logout_usuario(request):
+    logout(request)
+    return redirect('/auth/login')
+
+"""
+-------- PEDIDOS -----------------------
+"""
             
     
     
