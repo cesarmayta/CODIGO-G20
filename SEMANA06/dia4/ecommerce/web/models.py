@@ -46,3 +46,20 @@ class ProductoImagen(models.Model):
     def __str__(self):
         return self.producto.nombre
     
+from django.contrib.auth.models import User
+
+class Cliente(models.Model):
+    usuario = models.OneToOneField(User,on_delete=models.CASCADE)
+    dni = models.CharField(max_length=20)
+    telefono = models.CharField(max_length=20)
+    fecha_nacimiento = models.DateField(null=True)
+    direccion = models.TextField()
+    
+    class Meta:
+        db_table = 'tbl_cliente'
+        verbose_name = 'Cliente'
+        verbose_name_plural = 'Clientes'
+    
+    def __str__(self):
+        return self.dni
+    
