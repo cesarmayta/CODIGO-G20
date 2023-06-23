@@ -258,7 +258,7 @@ def pedido(request):
         data.update({'apellidos':request.user.last_name})
             
     if request.user.email != '':
-        data.update({'email':request.user.last_name})
+        data.update({'email':request.user.email})
         
     try:
         obj_cliente = Cliente.objects.get(usuario=request.user)
@@ -283,6 +283,65 @@ def pedido(request):
     return render(request,'pedido.html',context)
             
     
-    
+@login_required(login_url='/login')
+def registrar_pedido(request):
+    context = {}
+    if request.method == "POST":
+        #actualizamos datos del usuario
+        act_usuario = User.objects.get(pk=request.user.id)
+        act_usuario.first_name = request.POST['nombre']
+        act_usuario.last_name = request.POST['apellidos']
+        act_usuario.email = request.POST['email']
+        act_usuario.save()
+        
+        # registramos o actualizamos el cliente
+        try:
+            obj_cliente = Cliente.objects.get(usuario=request.user)
+            obj_cliente.telefono = request.POST['telefono']
+            obj_cliente.direccion = request.POST['direccion']
+            obj_cliente.dni = request.POST['dni']
+            obj_cliente.save()
+        except:
+            obj_cliente = Cliente()
+            obj_cliente.telefono = request.POST['telefono']
+            obj_cliente.direccion = request.POST['direccion']
+            obj_cliente.dni = request.POST['dni']
+            obj_cliente.save()
+            
+        #registramos el pdido
+        obj_pedido = Pedido()
+        obj_pedido.cliente = obj_cliente
+        obj_pedido.save()
+        
+        #registramos el detalle del pedido
+        carrito = request.session.get('cart')
+        total = 0
+        for key,value in carrito.items():
+            obj_producto = Producto.objects.get(pk=value['producto_id'])
+            detalle = PedidoDetalle()
+            detalle.pedido = obj_pedido
+            detalle.producto = obj_producto
+            detalle.cantidad = int(value['cantidad'])
+            detalle.subtotal = float(value['subtotal'])
+            total += float(value['subtotal'])
+            detalle.save()
+            
+        #actualizar pedido
+        nro_pedido = 'PED' + obj_pedido.fecha_registro.strftime('%Y') + str(obj_pedido.id)
+        obj_pedido.nro_pedido = nro_pedido
+        obj_pedido.monto_total = total
+        obj_pedido.save()
+        
+        context = {
+            'pedido':obj_pedido
+        }
+        
+        #limpiar el carrito
+        carrito.clear()
+        
+    return render(request,'pedido_confirmado.html',context)
+            
+            
+            
     
         

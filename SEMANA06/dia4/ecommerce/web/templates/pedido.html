@@ -7,7 +7,7 @@
         <li><a href="/">Home</a></li>
         <li>pedido</li>
     </ul>
-    <form method="post" action="" class="register">
+    <form method="post" action="{% url 'web:pedido_add' %}" class="register">
         {% csrf_token %}
         <article class="page-cont">
             <div class="page-styling">
