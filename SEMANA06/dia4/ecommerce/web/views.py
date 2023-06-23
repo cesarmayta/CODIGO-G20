@@ -246,6 +246,41 @@ def logout_usuario(request):
 """
 -------- PEDIDOS -----------------------
 """
+from .models import Pedido,PedidoDetalle
+
+@login_required(login_url='/auth/login')
+def pedido(request):
+    data = {}
+    if request.user.first_name != '':
+        data.update({'nombre':request.user.first_name})
+        
+    if request.user.last_name != '':
+        data.update({'apellidos':request.user.last_name})
+            
+    if request.user.email != '':
+        data.update({'email':request.user.last_name})
+        
+    try:
+        obj_cliente = Cliente.objects.get(usuario=request.user)
+        if obj_cliente.telefono != '':
+            data.update({'telefono':obj_cliente.telefono})
+        if obj_cliente.direccion != '':
+            data.update({'direccion':obj_cliente.direccion})
+        if obj_cliente.dni != '':
+            data.update({'dni':obj_cliente.dni})
+    except:
+        pass
+        
+    if data == {} :
+        frm_cliente = ClienteForm()
+    else:
+        frm_cliente = ClienteForm(data)
+        
+    context = {
+        'form':frm_cliente
+    }
+    
+    return render(request,'pedido.html',context)
             
     
     
