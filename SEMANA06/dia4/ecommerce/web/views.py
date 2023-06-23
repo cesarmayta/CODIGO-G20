@@ -158,14 +158,22 @@ def actualizar_cliente(request):
             act_usuario.email = data['email']
             act_usuario.save()
             
-            #registrar cliente
-            new_cliente = Cliente()
-            new_cliente.usuario = act_usuario
-            new_cliente.dni = data['dni']
-            new_cliente.direccion = data['direccion']
-            new_cliente.telefono = data['telefono']
-            new_cliente.fecha_nacimiento = data['fecha_nacimiento']
-            new_cliente.save()
+            try:
+                obj_cliente = Cliente.objects.get(usuario=request.user)
+                obj_cliente.dni = data['dni']
+                obj_cliente.direccion = data['direccion']
+                obj_cliente.telefono = data['telefono']
+                obj_cliente.fecha_nacimiento = data['fecha_nacimiento']
+                obj_cliente.save()
+            except:
+                #registrar cliente
+                new_cliente = Cliente()
+                new_cliente.usuario = act_usuario
+                new_cliente.dni = data['dni']
+                new_cliente.direccion = data['direccion']
+                new_cliente.telefono = data['telefono']
+                new_cliente.fecha_nacimiento = data['fecha_nacimiento']
+                new_cliente.save()
             
             mensaje = 'Datos Actualizados con Exito'
         else:
