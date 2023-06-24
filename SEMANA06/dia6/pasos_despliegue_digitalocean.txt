@@ -1,0 +1,141 @@
+#PASOS PARA DESPLIEGUE EN AWS
+1 - actualizar ubuntu e instalar librerias
+sudo apt update
+sudo apt install python3-pip python3-dev libpq-dev postgresql postgresql-contrib curl
+
+2 - CREAMOS LA BASE DE DATOS EN postgresql
+sudo -u postgres psql
+CREATE DATABASE shop;
+CREATE USER codigo WITH PASSWORD 'codigo2022';
+
+ALTER ROLE codigo SET client_encoding TO 'utf8';
+ALTER ROLE codigo SET default_transaction_isolation TO 'read committed';
+ALTER ROLE codigo SET timezone TO 'UTC';
+
+GRANT ALL PRIVILEGES ON DATABASE shop TO codigo;
+
+verificamos la base de datos y tablas
+
+\c shop
+\dt
+
+\q
+
+3 - CREAMOS ENTORNO VIRTUAL Y CONFIGURAMOS python3
+
+sudo apt install python3.10-venv python3-pip python3-dev
+python3 -m venv venv
+source venv/bin/activate
+
+nos dirigmos a la carpeta home
+
+cd /home
+
+creamos un repositorio en donde subiremos el codigo del proyecto ecommerce
+con el nombre ecommerce_g20
+NOTA: usar de modelo lo que esta en este repositorio
+https://github.com/cesarmayta/ecommerce_g20
+
+clonamos el repositorio dentro de la carpeta home
+
+git clone https://github.com/[tu usuario de github]/ecommerce_g20.git
+
+ejecutamos pip install -r requirements.txt
+
+
+------
+
+DESPLIEGUE CON GUNICORN Y NGINX
+1 - probamos gunicorn
+recolectamos staticos
+
+python3 manage.py collectstatic
+gunicorn --bind 0.0.0.0:8000 ecommerce.wsgi
+
+2 - copiar los archivos al servidor
+primero se debe subir por git y hacer git pull en el servidor
+
+ingresamos a la carpeta conf
+
+sudo cp gunicorn.socket /etc/systemd/system/gunicorn.socket
+
+sudo cp gunicorn.service /etc/systemd/system/gunicorn.service
+
+
+
+3 - activamos nuestro socket
+
+sudo systemctl start gunicorn.socket
+sudo systemctl enable gunicorn.socket
+
+4 - verificamos el status del socket y servicio
+
+sudo systemctl status gunicorn.socket
+file /run/gunicorn.sock
+
+sudo systemctl status gunicorn
+
+curl --unix-socket /run/gunicorn.sock localhost
+
+5 - configuramos nginx
+
+sudo apt install nginx
+sudo cp shop /etc/nginx/sites-available/shop
+
+sudo ln -s /etc/nginx/sites-available/shop /etc/nginx/sites-enabled
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+
+6 - asignamos permisos al usuario root para la carpeta static
+
+sudo usermod -a -G root www-data
+
+sudo chown -R :www-data /home/ecommerce_g20/static
+
+===========================================================================
+SI HAY CAMBIOS Y PROBLEMAS
+
+PARA CUANDO HAGO CAMBIOS EN LOS ARCHIVOS DE CONFIGURACIÓN
+
+git pull origin main
+
+sudo cp gunicorn.socket /etc/systemd/system/gunicorn.socket
+
+sudo cp gunicorn.service /etc/systemd/system/gunicorn.service
+
+sudo cp shop /etc/nginx/sites-available/shop
+
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn.socket
+
+sudo rm /etc/nginx/sites-enabled/shop
+
+sudo ln -s /etc/nginx/sites-available/shop /etc/nginx/sites-enabled
+
+sudo nginx -t
+
+sudo systemctl restart nginx
+
+
+PARA VER LOGS EN NGINX :
+
+sudo tail -F /var/log/nginx/error.log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
