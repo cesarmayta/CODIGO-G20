@@ -334,6 +334,8 @@ def registrar_pedido(request):
         obj_pedido.monto_total = total
         obj_pedido.save()
         
+        request.session['pedido_id'] = obj_pedido.id
+        
         #creamos formulario de pago de paypal
         paypal_dict = {
             "business": "sb-f55mh26405210@business.example.com",
@@ -359,7 +361,23 @@ def registrar_pedido(request):
     return render(request,'pedido_confirmado.html',context)
 
 def registro_pago(request):
-    return render(request,'gracias.html')
+    paypal_payer_id = request.GET.get('PayerID',None)
+    pedido_id = request.session.get('pedido_id')
+    context = {}
+    
+    if paypal_payer_id is not None:
+        obj_pedido = Pedido.objects.get(pk=pedido_id)
+        
+        print(obj_pedido)
+        obj_pedido.estado = '2'
+        payer_id = paypal_payer_id
+        obj_pedido.save()
+        
+        context = {
+            'pedido':obj_pedido
+        }
+    
+    return render(request,'gracias.html',context)
             
             
             
