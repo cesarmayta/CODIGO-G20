@@ -1,0 +1,24 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    {% include 'includes/meta.html' %}
+</head>
+<body>
+<div id="page" class="site">
+    {% include 'includes/navbar.html' %}
+    {% include 'includes/header.html' %}
+    <div id="content" class="site-content">
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main">
+                {% block content %}
+                {% endblock %}
+            </main><!-- #main -->
+        </div><!-- #primary -->
+    </div><!-- #content -->
+    {% include 'includes/footer.html' %}
+    {% include 'includes/modals.html' %}
+</div><!-- #page -->
+{% include 'includes/scripts.html' %}
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+{% block content %}
+<main id="main" class="site-main">
+    <div class="cont maincont">
+        <h1 class="maincont-ttl">Cart</h1>
+        <ul class="b-crumbs">
+            <li><a href="index.html">Home</a></li>
+            <li>Cart</li>
+        </ul><div class="page-styling">
+        <div class="woocommerce prod-litems section-list">
+            {%for key,value in request.session.cart.items %}
+            <article class="prod-li sectls">
+                <div class="prod-li-inner">
+                    <a href="#" class="prod-li-img">
+                        {% if value.imagen %}
+                            <img src="{{value.imagen}}" alt="">
+                        {% else %}
+                            <img src="http://placehold.it/290x258" alt="">
+                        {% endif %}
+                    </a>
+                    <div class="prod-li-cont">
+                        <div class="prod-li-ttl-wrap">
+                            <p>
+                                <a href="#">{{value.categoria}}</a>
+                            </p>
+                            <h3><a href="#">{{value.nombre}}</a></h3>
+                        </div><!--
+        No Space
+        --><div class="prod-li-prices">
+                        <div class="prod-li-price-wrap">
+                            <p>Precio</p>
+                            <p class="prod-li-price">${{value.precio}}</p>
+                        </div>
+                        <div class="prod-li-qnt-wrap">
+                            <p class="qnt-wrap prod-li-qnt">
+                                <a href="#" class="qnt-plus prod-li-plus"><i class="icon ion-arrow-up-b"></i></a>
+                                <input type="text" value="{{value.cantidad}}">
+                                <a href="#" class="qnt-minus prod-li-minus"><i class="icon ion-arrow-down-b"></i></a>
+                            </p>
+                        </div>
+                        <div class="prod-li-total-wrap">
+                            <p>SubTotal</p>
+                            <p class="prod-li-total">${{value.subtotal}}</p>
+                        </div>
+                    </div><!--
+No Space
+--></div>
+                    <div class="prod-li-info">
+                        <div class="prod-li-rating-wrap">
+                            <p data-rating="5" class="prod-li-rating">
+                                <i class="rating-ico" title="1"></i><i class="rating-ico" title="2"></i><i class="rating-ico" title="3"></i><i class="rating-ico" title="4"></i><i class="rating-ico" title="5"></i>
+                            </p>
+                            <p class="prod-li-rating-count">12</p>
+                        </div>
+                        <p class="prod-li-add">
+                            <a href="/cart/del/{{value.producto_id}}" class="button hover-label prod-addbtn"><i class="icon ion-close-round"></i><span>Eliminar</span></a>
+                        </p>
+                        <p class="prod-li-compare">
+                            <a href="compare.html" class="hover-label prod-li-compare-btn"><span>Compare</span><i class="icon ion-arrow-swap"></i></a>
+                        </p>
+                        <p class="prod-quickview">
+                            <a href="#" class="hover-label quick-view"><i class="icon ion-plus"></i><span>Quick View</span></a>
+                        </p>
+                        <div class="prod-li-favorites">
+                            <a href="wishlist.html" class="hover-label add_to_wishlist"><i class="icon ion-heart"></i><span>Add to Wishlist</span></a>
+                        </div>
+                        <p class="prod-li-information">
+                            <a href="#" class="hover-label"><i class="icon ion-more"></i><span>Show Information</span></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="page-styling prod-li-informations">
+                    <p>{{value.descripcion | safe}}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="cart-actions">
+            <div class="coupon">
+                <input type="text" placeholder="Coupon code">
+                <input type="submit" class="button" value="Apply">
+            </div>
+            <div class="cart-collaterals">
+                <a href="/cart/clear" class="checkout-button button">Limpiar</a>
+                <a href="{% url 'web:pedido' %}" class="checkout-button button">Realizar Compra</a>
+                <div class="order-total">
+                    <p class="cart-totals-ttl">Total</p>
+                    <p class="cart-totals-val">$510.00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
+{% endblock %}

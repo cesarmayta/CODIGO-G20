@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="cont maincont">
+    {% include 'includes/catalogo/header.html' %}
+    <!-- To make Sidebar "Not Sticky" just remove  id="section-list-withsb" -->
+    <div class="section-wrap-withsb">
+        {% include 'includes/catalogo/sidebar.html' %}        
+        <div class="section-list-withsb" id="section-list-withsb">
+        <div class="theiaStickySidebar">
+            {% include 'includes/catalogo/productos.html' %}
+        </div><!-- .theiaStickySidebar -->
+    </div><!-- .section-list-withsb -->
+    </div><!-- .section-wrap-withsb -->
+
+</div>
+{% endblock %}
