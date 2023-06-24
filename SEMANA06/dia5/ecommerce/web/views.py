@@ -335,14 +335,14 @@ def registrar_pedido(request):
         obj_pedido.save()
         
         #creamos formulario de pago de paypal
-         paypal_dict = {
+        paypal_dict = {
             "business": "sb-f55mh26405210@business.example.com",
             "amount": total,
             "item_name": 'compra de tienda ecommerce nro : '+ nro_pedido,
             "invoice": nro_pedido,
             "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-            "return": request.build_absolute_uri(reverse('/gracias')),
-            "cancel_return": request.build_absolute_uri(reverse('/'))
+            "return": request.build_absolute_uri('/pago'),
+            "cancel_return": request.build_absolute_uri('/')
         }
 
         # Create the instance.
@@ -357,6 +357,9 @@ def registrar_pedido(request):
         carrito.clear()
         
     return render(request,'pedido_confirmado.html',context)
+
+def registro_pago(request):
+    return render(request,'gracias.html')
             
             
             
