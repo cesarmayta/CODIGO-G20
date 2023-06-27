@@ -1,0 +1,41 @@
+<div class="row prod-items prod-items-2">
+    {% for producto in productos %}
+        <article class="cf-sm-6 cf-md-6 cf-lg-6 col-xs-6 col-sm-6 col-md-6 col-lg-6 sectgl-item">
+            <div class="sectgl prod-i">
+                <div class="prod-i-top">
+                    <a class="prod-i-img" href="{% url 'web:producto' producto.id %}">
+                        {% if producto.imagen %}
+                            <img src="{{producto.imagen.url}}" alt="">
+                        {% else %}
+                            <img src="http://placehold.it/290x258" alt="">
+                        {% endif %}
+                    </a>
+                    <div class="prod-i-actions">
+                        <div class="prod-i-actions-in">
+                            <p class="prod-i-cart">
+                                <a href="/cart/add/{{producto.id}}" class="hover-label prod-addbtn">
+                                    <i class="icon ion-android-cart"></i>
+                                    <span>Add to Cart</span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="prod-i-bot">
+                    <div class="prod-i-info">
+                        <p class="prod-i-price">${{producto.precio}}</p>
+                        <p class="prod-i-categ"><a href="{% url 'web:categoria' producto.categoria.id %}">{{producto.categoria}}</a></p>
+                    </div>
+                    <h3 class="prod-i-ttl"><a href="{% url 'web:producto' producto.id %}">{{producto.nombre}}</a></h3>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+</div>
+<ul class="page-numbers">
+    <li><span class="page-numbers current">1</span></li>
+    <li><a class="page-numbers" href="#">2</a></li>
+    <li><a class="page-numbers" href="#">3</a></li>
+    <li><a class="page-numbers" href="#">4</a></li>
+    <li><a class="next page-numbers" href="#"><i class="fa fa-angle-right"></i></a></li>
+</ul>
