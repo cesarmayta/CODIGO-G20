@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import generics
 
 from web.models import Categoria,Producto,Marca
-from .serializers import CategoriaSerializer,MarcaSerializer
+from .serializers import CategoriaSerializer,MarcaSerializer,ProductoSerializer
 
 class CategoriaView(generics.ListCreateAPIView):
     queryset = Categoria.objects.all()
@@ -22,4 +22,8 @@ class MarcaDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Marca.objects.all()
     lookup_field = 'pk'
     serializer_class = MarcaSerializer
+    
+class ProductoView(generics.ListCreateAPIView):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
     
