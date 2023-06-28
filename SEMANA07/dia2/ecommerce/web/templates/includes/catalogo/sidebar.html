@@ -13,7 +13,7 @@
                             <li>
                                 <a href="{% url 'web:categoria' categoria.id %}">
                                     <span class="section-sb-label">{{categoria.nombre}} 
-                                    <span class="count">{{categoria.producto_set.all.count}}</span></span></a>
+                                    <span class="count">{{categoria.Productos.all.count}}</span></span></a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -25,7 +25,7 @@
                         {% for marca in marcas %}
                         <li>
                             <a href="{% url 'web:marca' marca.id %}">{{marca.nombre}} 
-                                <span class="count">{{marca.producto_set.all.count}}</span></a>
+                                <span class="count">{{marca.Productos.all.count}}</span></a>
                         </li>
                         {% endfor %}
                     </ul>

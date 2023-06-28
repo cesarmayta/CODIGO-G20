@@ -38,7 +38,7 @@ def productos_por_categoria(request,categoria_id):
 
 def productos_por_marca(request,marca_id):
     obj_marca = Marca.objects.get(pk=marca_id)
-    lista_productos = obj_marca.producto_set.all()
+    lista_productos = obj_marca.Productos.all()
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
     

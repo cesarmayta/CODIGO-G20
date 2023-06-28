@@ -23,7 +23,9 @@ class Producto(models.Model):
     categoria = models.ForeignKey(Categoria,
                                   related_name='Productos',
                                   on_delete=models.RESTRICT)
-    marca = models.ForeignKey(Marca,on_delete=models.RESTRICT)
+    marca = models.ForeignKey(Marca,
+                              related_name='Productos',
+                              on_delete=models.RESTRICT)
     nombre = models.CharField(max_length=250)
     descripcion = models.TextField(null=True)
     precio = models.DecimalField(max_digits=10,decimal_places=2)

@@ -5,7 +5,8 @@ from rest_framework import generics
 from web.models import Categoria,Producto,Marca
 from .serializers import (
     CategoriaSerializer,MarcaSerializer,
-    ProductoSerializer,CategoriaProductoSerializer)
+    ProductoSerializer,CategoriaProductoSerializer,
+    MarcaProductoSerializer)
 
 class CategoriaView(generics.ListCreateAPIView):
     queryset = Categoria.objects.all()
@@ -32,4 +33,8 @@ class ProductoView(generics.ListCreateAPIView):
 class CategoriaProductosView(generics.RetrieveAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaProductoSerializer
+    
+class MarcaProductosView(generics.RetrieveAPIView):
+    queryset = Marca.objects.all()
+    serializer_class = MarcaProductoSerializer
     

@@ -28,3 +28,9 @@ class CategoriaProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
         fields = ['id','nombre','Productos']
+        
+class MarcaProductoSerializer(serializers.ModelSerializer):
+    Productos = ProductoSerializer(many=True,read_only=True)
+    class Meta:
+        model = Marca
+        fields = ['id','nombre','Productos']
