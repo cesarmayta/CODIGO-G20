@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-g-tvpu059m++yj_gd&oa67_blh)6oi(j*p2e2^e6$z5*nc9is_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -32,8 +32,10 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'web',
+    'api',
     'paypal.standard.ipn',
     'ckeditor',
+    'rest_framework',
     'django_admin_tailwind',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,12 +81,12 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shop',
-        'USER': 'codigo',
-        'PASSWORD': 'codigo2022',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_ecommerce_g20',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '3306',
     }
 }
 # Password validation

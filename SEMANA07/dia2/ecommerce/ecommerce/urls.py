@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',include('web.urls')),
+    path('api/',include('api.urls')),
     path('admin/', admin.site.urls),
     path('paypal/', include("paypal.standard.ipn.urls")),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
