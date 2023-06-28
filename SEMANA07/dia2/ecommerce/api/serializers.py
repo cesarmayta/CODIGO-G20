@@ -15,4 +15,16 @@ class MarcaSerializer(serializers.ModelSerializer):
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = '__all__'
+        fields = ['id','nombre','precio','imagen','marca','categoria']
+        
+    def to_representation(self,instance):
+        representation = super().to_representation(instance)
+        representation['categoria'] = instance.categoria.nombre
+        representation['marca'] = instance.marca.nombre
+        return representation
+    
+class CategoriaProductoSerializer(serializers.ModelSerializer):
+    Productos = ProductoSerializer(many=True,read_only=True)
+    class Meta:
+        model = Categoria
+        fields = ['id','nombre','Productos']

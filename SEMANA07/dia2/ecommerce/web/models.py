@@ -20,7 +20,9 @@ class Marca(models.Model):
         return self.nombre
     
 class Producto(models.Model):
-    categoria = models.ForeignKey(Categoria,on_delete=models.RESTRICT)
+    categoria = models.ForeignKey(Categoria,
+                                  related_name='Productos',
+                                  on_delete=models.RESTRICT)
     marca = models.ForeignKey(Marca,on_delete=models.RESTRICT)
     nombre = models.CharField(max_length=250)
     descripcion = models.TextField(null=True)

@@ -25,7 +25,7 @@ def index(request):
 def productos_por_categoria(request,categoria_id):
     obj_categoria = Categoria.objects.get(pk=categoria_id)
     #lista_productos = Producto.objects.filter(categoria=obj_categoria)
-    lista_productos = obj_categoria.producto_set.all()
+    lista_productos = obj_categoria.Productos.all()
     lista_categorias = Categoria.objects.all()
     lista_marcas = Marca.objects.all()
     
