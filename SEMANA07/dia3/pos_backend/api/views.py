@@ -1,12 +1,13 @@
 from rest_framework import generics
 
 from .models import (
-    Mesa,Categoria
+    Mesa,Categoria,Plato
 )
 
 from .serializers import (
     CategoriaSerializer,
-    MesaSerializer
+    MesaSerializer,
+    PlatoSerializer
 )
 
 class CategoriaView(generics.ListCreateAPIView):
@@ -16,3 +17,7 @@ class CategoriaView(generics.ListCreateAPIView):
 class MesaView(generics.ListCreateAPIView):
     queryset = Mesa.objects.all()
     serializer_class = MesaSerializer
+    
+class PlatoView(generics.ListCreateAPIView):
+    queryset = Plato.objects.all()
+    serializer_class = PlatoSerializer
