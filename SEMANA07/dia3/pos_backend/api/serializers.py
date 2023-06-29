@@ -23,3 +23,10 @@ class PlatoSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['plato_img'] = instance.plato_img.url
         return representation
+    
+class CategoriaPlatoSerializer(serializers.ModelSerializer):
+    Platos = PlatoSerializer(many=True,read_only=True)
+    
+    class Meta:
+        model = Categoria
+        fields = ['categoria_id','categoria_nom','Platos']
