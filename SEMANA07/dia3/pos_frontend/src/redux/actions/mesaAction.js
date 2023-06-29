@@ -24,7 +24,7 @@ export const getMesas = () => {
 
 		dispatch({
 			type: SET_MESAS,
-			payload: response.data.content
+			payload: response.data
 		});
 
 		dispatch(setFinCargandoMesas());

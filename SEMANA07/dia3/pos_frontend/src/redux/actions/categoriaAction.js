@@ -21,7 +21,7 @@ export const getCategorias = () => {
 		const response = await axios.get(endpoint);
 		dispatch({
 			type: SET_CATEGORIAS,
-			payload: response.data.content
+			payload: response.data
 		});
 
 		dispatch(setFinCargandoCategorias());
