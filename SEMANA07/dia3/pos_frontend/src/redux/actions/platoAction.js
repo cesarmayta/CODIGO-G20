@@ -37,7 +37,7 @@ export const getPlatosPorCategoriaId = (categoriaId) => {
 		const response = await axios.get(endpoint);
 		dispatch({
 			type: SET_PLATOS_POR_CATEGORIA,
-			payload: response.data.content.Platos
+			payload: response.data.Platos
 		});
 
 		dispatch(setFinCargandoPlatosPorCategoria());
