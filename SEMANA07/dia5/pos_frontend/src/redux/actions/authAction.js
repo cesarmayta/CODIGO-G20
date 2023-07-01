@@ -63,17 +63,15 @@ export const iniciarSesionLocalStorage = () => {
 		let token = localStorage.getItem('token');
 		try {
 			if (token) {
-				/*const endpoint = `${URL_BACKEND}/verificar`;
-				const response = await axios.post(endpoint, null, {
-					headers: {
-						authorization: `Bearer ${token}`
-					}
-				});*/
-				//response.data.ok
-				if (1==1) {
+				const endpoint = `${URL_BACKEND}/verify/`;
+				const response = await axios.post(endpoint, {"token":token})
+				console.log(response.status)
+				if (response.status === 200) {
 					let payload = token.split('.')[1];
 					let payloadDecoded = atob(payload);
 					let payloadJSON = JSON.parse(payloadDecoded);
+					console.log("nombre de usuario" + payloadJSON.usu_nom);
+					console.log("foto de usuario " + payloadJSON.usu_img);
 					dispatch({
 						type: SET_SUCCESS_LOGIN,
 						payload: {
@@ -81,6 +79,7 @@ export const iniciarSesionLocalStorage = () => {
 							usu_nom: payloadJSON.usu_nom,
 							usu_id: payloadJSON.usu_id,
 							usu_tipo: payloadJSON.usu_tipo,
+							usu_img: payloadJSON.usu_img,
 							token: token
 						}
 					});
