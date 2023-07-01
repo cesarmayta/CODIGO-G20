@@ -18,15 +18,15 @@ from .serializers import (
     PedidoSerializerGET
 )
 
-class CategoriaView(generics.ListCreateAPIView):
+class CategoriaView(generics.ListAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
     
-class MesaView(generics.ListCreateAPIView):
+class MesaView(generics.ListAPIView):
     queryset = Mesa.objects.all()
     serializer_class = MesaSerializer
     
-class PlatoView(generics.ListCreateAPIView):
+class PlatoView(generics.ListAPIView):
     queryset = Plato.objects.all()
     serializer_class = PlatoSerializer
     

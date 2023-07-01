@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/admin/',include('api_admin.urls'))
 ]

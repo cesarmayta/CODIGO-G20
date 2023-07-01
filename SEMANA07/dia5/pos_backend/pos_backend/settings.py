@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'api',
     'api_auth',
+    'api_admin',
     'rest_framework',
     "corsheaders",
     'rest_framework_simplejwt',
