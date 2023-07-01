@@ -1,0 +1,5 @@
+django==3.2
+djangorestframework
+mysqlclient
+django-cors-headers
+cloudinary
