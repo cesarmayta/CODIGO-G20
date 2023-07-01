@@ -149,9 +149,11 @@ cloudinary.config(
   api_key = "979611496821765", 
   api_secret = "yFh0UFKIoVPvrgxC-cHG-I-vsC8" 
 )
+from datetime import timedelta
 
 SIMPLE_JWT = {
   # It will work instead of the default serializer(TokenObtainPairSerializer).
   "TOKEN_OBTAIN_SERIALIZER": "api_auth.serializers.LoginSerializer",
+  "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
   # ...
 }

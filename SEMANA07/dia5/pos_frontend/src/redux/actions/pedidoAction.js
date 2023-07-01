@@ -17,7 +17,15 @@ export const getPedidosDB = () => {
 		dispatch(setInicioCargandoPedidosDB());
 		console.log("MOSTRANDO PEDIDOS")
 		const endpoint = `${URL_BACKEND}/pedido/get`;
-		const response = await axios.get(endpoint);
+
+		//cargamos el token
+		let token = localStorage.getItem('token');
+
+		const response = await axios.get(endpoint,{
+			headers: {
+				authorization: `Bearer ${token}`
+			}
+		});
 		console.log(response.data)
 		dispatch({
 			type: SET_PEDIDOS_DB,
