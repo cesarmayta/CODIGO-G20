@@ -4,3 +4,4 @@ mysqlclient
 django-cors-headers
 cloudinary
 djangorestframework-simplejwt
+drf-yasg
