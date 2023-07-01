@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     "corsheaders",
+    'rest_framework_simplejwt',
     'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,6 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
