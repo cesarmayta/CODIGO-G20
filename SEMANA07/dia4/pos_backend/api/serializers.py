@@ -36,7 +36,7 @@ class CategoriaPlatoSerializer(serializers.ModelSerializer):
 
 class PedidoPlatoSerializerPOST(serializers.ModelSerializer):
     class Meta:
-        models = PedidoPlato
+        model = PedidoPlato
         fields = ['plato_id','pedidoplato_cant']
         
 class PedidoSerializerPOST(serializers.ModelSerializer):
@@ -44,7 +44,7 @@ class PedidoSerializerPOST(serializers.ModelSerializer):
     
     class Meta:
         model = Pedido
-        fields = ['pedido_fetch','pedido_nro',
+        fields = ['pedido_fech','pedido_nro',
                   'pedido_est','usu_id',
                   'mesa_id','pedidoplatos']
         

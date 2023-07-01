@@ -29,7 +29,8 @@ const PosModalBoleta = ({ mostrar, setMostrar }) => {
 		if (objPedidoActual) {
 			setCargandoPago(true);
 			postPagarPedido(objPedidoActual, idMesaSeleccionada).then((response) => {
-				if (response.ok) {
+				if (response) {
+					console.log(response)
 					// limpiar el pedido que acaba de ser pagado
 					dispatch(eliminarPedidoPorMesaIdAction(idMesaSeleccionada));
 					// cerrar el modal

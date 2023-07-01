@@ -4,14 +4,16 @@ from rest_framework.response import Response
 from django.db.models.functions import Lower
 
 from .models import (
-    Mesa,Categoria,Plato
+    Mesa,Categoria,Plato,
+    Pedido
 )
 
 from .serializers import (
     CategoriaSerializer,
     MesaSerializer,
     PlatoSerializer,
-    CategoriaPlatoSerializer
+    CategoriaPlatoSerializer,
+    PedidoSerializerPOST
 )
 
 class CategoriaView(generics.ListCreateAPIView):
@@ -37,3 +39,7 @@ class SearchPlatoView(APIView):
         data = Plato.objects.filter(plato_nom__icontains=search)
         serializer = PlatoSerializer(data,many=True)
         return Response(serializer.data)
+    
+class PedidoRegisterView(generics.CreateAPIView):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializerPOST

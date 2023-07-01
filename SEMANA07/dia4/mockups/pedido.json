@@ -1,0 +1,21 @@
+{
+    "usu_id": 1,
+    "mesa_id": 1,
+    "pedido_est": "solicitado",
+    "pedido_nro": "8f6e9937-e7f8-49d9-86e3-09e8ab537146",
+    "pedido_fech": "2023-06-30 08:21:36",
+    "pedidoplatos": [
+        {
+            "plato_id": 1,
+            "pedidoplato_cant": 1
+        },
+        {
+            "plato_id": 4,
+            "pedidoplato_cant": 1
+        },
+        {
+            "plato_id": 6,
+            "pedidoplato_cant": 1
+        }
+    ]
+}
