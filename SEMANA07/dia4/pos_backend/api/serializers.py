@@ -54,4 +54,19 @@ class PedidoSerializerPOST(serializers.ModelSerializer):
         for obj_pedido_plato in lista_pedido_plato:
             PedidoPlato.objects.create(pedido_id=pedido,**obj_pedido_plato)
         return pedido
+    
+""" serializers para GET pedidos """
+class PedidoPlatoSerializerGET(serializers.ModelSerializer):
+    class Meta:
+        model = PedidoPlato
+        fields = ['pedidoplato_id','pedidoplato_cant','pedido_id','plato_id']
+        
+class PedidoSerializerGET(serializers.ModelSerializer):
+    pedidoplatos = PedidoPlatoSerializerGET(many=True,read_only=True)
+    
+    class Meta:
+        model = Pedido
+        fields = ['pedido_id','pedido_fech','pedido_nro',
+                  'pedido_est','usu_id','mesa_id',
+                  'pedidoplatos']
         

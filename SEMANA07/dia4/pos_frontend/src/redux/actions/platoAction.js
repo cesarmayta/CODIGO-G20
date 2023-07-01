@@ -53,7 +53,7 @@ export const getPlatos = () => {
 		console.log(response);
 		dispatch({
 			type: SET_PLATOS,
-			payload: response.data.content
+			payload: response.data
 		});
 
 		dispatch(setFinCargandoPlatos());

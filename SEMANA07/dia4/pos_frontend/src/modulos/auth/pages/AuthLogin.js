@@ -7,9 +7,9 @@ const AuthLogin = (props) => {
 	const dispatch = useDispatch();
 	const { autenticado, cargando } = useSelector((state) => state.auth);
 
-	/*if (autenticado) {
+	if (autenticado) {
 		props.history.push('/admin/dashboard');
-	}*/
+	}
 
 	const [formulario, setFormulario] = useState({
 		correo: 'cesarmayta@gmail.com',

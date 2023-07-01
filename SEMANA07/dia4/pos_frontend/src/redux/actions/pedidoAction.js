@@ -16,12 +16,12 @@ export const getPedidosDB = () => {
 	return async (dispatch) => {
 		dispatch(setInicioCargandoPedidosDB());
 		console.log("MOSTRANDO PEDIDOS")
-		const endpoint = `${URL_BACKEND}/pedido`;
+		const endpoint = `${URL_BACKEND}/pedido/get`;
 		const response = await axios.get(endpoint);
 		console.log(response.data)
 		dispatch({
 			type: SET_PEDIDOS_DB,
-			payload: response.data.pedidos
+			payload: response.data
 		});
 
 		dispatch(setFinCargandoPedidosDB());

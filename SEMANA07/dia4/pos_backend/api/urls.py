@@ -8,5 +8,6 @@ urlpatterns = [
     path('plato',views.PlatoView.as_view()),
     path('categoria/<int:categoria_id>/platos',views.CategoriaPlatosView.as_view()),
     path('plato/search/<str:search>',views.SearchPlatoView.as_view()),
-    path('pedido',views.PedidoRegisterView.as_view())
+    path('pedido',views.PedidoRegisterView.as_view()),
+    path('pedido/get',views.PedidoView.as_view())
 ]

@@ -13,7 +13,8 @@ from .serializers import (
     MesaSerializer,
     PlatoSerializer,
     CategoriaPlatoSerializer,
-    PedidoSerializerPOST
+    PedidoSerializerPOST,
+    PedidoSerializerGET
 )
 
 class CategoriaView(generics.ListCreateAPIView):
@@ -43,3 +44,7 @@ class SearchPlatoView(APIView):
 class PedidoRegisterView(generics.CreateAPIView):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializerPOST
+    
+class PedidoView(generics.ListAPIView):
+    queryset = Pedido.objects.all()
+    serializer_class = PedidoSerializerGET
