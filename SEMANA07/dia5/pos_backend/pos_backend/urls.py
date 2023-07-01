@@ -40,12 +40,11 @@ schema_view = get_schema_view(
 """ -------------- """
 
 urlpatterns = [
-    path('',include('api.urls')),
+    path('api/',include('api.urls')),
     path('admin/', admin.site.urls),
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/admin/',include('api_admin.urls')),
-    path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 ]
