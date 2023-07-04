@@ -1,9 +1,0 @@
-django==3.2
-mysqlclient
-#psycopg2
-Pillow
-django-ckeditor
-django-admin-tailwind
-django-paypal
-#gunicorn
-djangorestframework
