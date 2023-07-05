@@ -59,4 +59,26 @@ app.get('/tarea/:id',(req,res)=>{
     })
 })
 
+app.put('/tarea/:id',(req,res)=>{
+    const {id} = req.params
+    const {descripcion,estado} = req.body
+
+    const query = `update tarea set
+                   descripcion=?,estado=?
+                   where id=?`
+
+    mysqlConnection.query(query,[descripcion,estado,id],
+        (err,rows,fields)=>{
+            if(!err){
+                res.json({
+                    'status':true,
+                    'content':'registro actualizado con exito'
+                })
+            }
+            else{
+                console.log(err)
+            }
+        })
+})
+
 app.listen(5000,()=>console.log('http://localhost:5000'))
