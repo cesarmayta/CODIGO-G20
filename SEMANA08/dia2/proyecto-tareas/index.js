@@ -3,6 +3,8 @@ const mysqlConnection = require('./database')
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.json({
         'status':true,
@@ -19,6 +21,24 @@ app.get('/tarea',(req,res)=>{
                 'content':rows
             }
             res.json(context)
+        }else{
+            console.log(err)
+        }
+    })
+})
+
+app.post('/tarea',(req,res)=>{
+    const {descripcion,estado} = req.body
+
+    const query = `insert into tarea(descripcion,estado)
+                   values('${descripcion}','${estado}')`
+
+    mysqlConnection.query(query,(err,rows,fields)=>{
+        if(!err){
+            res.json({
+                'status':true,
+                'content':'registro exitoso'
+            })
         }else{
             console.log(err)
         }
