@@ -4,9 +4,6 @@ const app = express()
 
 app.use(bp.urlencoded({extended:true}))
 
-
-
-
 app.use(express.static('public'))
 
 app.get('/',function(req,res){
