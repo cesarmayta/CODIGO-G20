@@ -18,6 +18,21 @@ function categoriaApi(app){
             console.log(err)
         }
     })
+
+    router.post('/',async function(req,res){
+        const {body:data} = req
+        console.log(data)
+        try{
+            const newData = await objCategoria.create({data})
+            console.log(newData)
+            res.status(201).json({
+                status:true,
+                content:newData
+            })
+        }catch(err){
+            console.log(err)
+        }
+    })
 }
 
 module.exports = categoriaApi

@@ -5,6 +5,8 @@ const categoriaApi = require('./routes/categoria.routes')
 
 const app = express()
 
+app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.json({
         'status':true,
