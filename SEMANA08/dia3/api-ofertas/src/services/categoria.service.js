@@ -33,6 +33,16 @@ class CategoriaService{
         const result = await this.getLast()
         return result
     }
+
+    async getById(id){
+        const sqlGetById = `select ${this.table_name}_id as id,
+                            ${this.table_name}_descripcion as descripcion
+                            from tbl_${this.table_name} where
+                            ${this.table_name}_id = ?`
+        
+        const result = await this.db.querySql(sqlGetById,[id])
+        return result
+    }
 }
 
 module.exports = CategoriaService

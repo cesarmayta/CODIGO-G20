@@ -27,10 +27,30 @@ function categoriaApi(app){
             console.log(newData)
             res.status(201).json({
                 status:true,
-                content:newData
+                content:newData[0]
             })
         }catch(err){
             console.log(err)
+        }
+    })
+
+    router.get('/:id',async function(req,res){
+        const {id} = req.params
+        try{
+            const data = await objCategoria.getById(id)
+            if(data.length > 0){
+                res.status(200).json({
+                    status:true,
+                    content:data[0]
+                })
+            }else{
+                res.status(404).json({
+                    status:false,
+                    content:'no se encontraron registros'
+                })
+            }
+        }catch(err){
+            console.error(err)
         }
     })
 }
