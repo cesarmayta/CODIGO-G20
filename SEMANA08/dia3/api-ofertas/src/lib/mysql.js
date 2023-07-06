@@ -22,10 +22,10 @@ class MysqlLib{
         }
     }
 
-    async querySql(sql){
+    async querySql(sql,values){
         const pool = await this.getConnection()
         return new Promise(function(resolve,reject){
-            pool.query(sql,function(err,result,fields){
+            pool.query(sql,values,function(err,result,fields){
                 if(!err) resolve(JSON.parse(JSON.stringify(result)))
                 else reject(err)
             })
