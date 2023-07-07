@@ -1,5 +1,11 @@
 const express = require('express')
 const CategoriaService = require('../services/categoria.service')
+const boom = require('@hapi/boom')
+
+//middlewares
+const validatorHandler = require('../middlewares/validator.handler')
+
+const {categoriaSchema} = require('../schemas/categoria.schema')
 
 function categoriaApi(app){
     const router = express.Router()
@@ -19,7 +25,9 @@ function categoriaApi(app){
         }
     })
 
-    router.post('/',async function(req,res){
+    router.post('/',
+    validatorHandler(categoriaSchema,'body'),
+    async function(req,res){
         const {body:data} = req
         console.log(data)
         try{
