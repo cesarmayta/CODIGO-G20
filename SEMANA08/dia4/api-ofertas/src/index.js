@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const boom = require('@hapi/boom')
 
 const categoriaApi = require('./routes/categoria.routes')
+const usuarioApi = require('./routes/usuario.routes')
 
 //middlewares
 const {errorHandler,boomErrorHandler} = require('./middlewares/error.handler')
@@ -27,6 +28,7 @@ app.get('/',(req,res)=>{
 })
 
 categoriaApi(app)
+usuarioApi(app)
 
 //error handlers
 app.use(boomErrorHandler)

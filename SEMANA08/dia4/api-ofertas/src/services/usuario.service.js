@@ -22,12 +22,10 @@ class UsuarioService{
                             values(?,?)
                             `
         await this.db.querySql(sqlCreate,[usuario.usuario,passwordEncriptado])
-        const result = await this.db.getLast()
+        const result = await this.getLast()
         return result
-
     }
 
-    
 }
 
 module.exports = UsuarioService
