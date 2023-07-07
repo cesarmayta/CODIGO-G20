@@ -35,7 +35,7 @@ class UsuarioService{
                              `
             const result = await this.db.querySql(sqlAuth,[usuario.usuario])
             if(await bcrypt.compare(usuario.password,result[0].pwd)){
-                const usaurioFound = {
+                const usuarioFound = {
                     id:result[0].id,
                     usuario:usuario.nombre
                 }
