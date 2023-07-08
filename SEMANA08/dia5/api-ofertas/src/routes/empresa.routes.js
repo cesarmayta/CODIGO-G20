@@ -33,6 +33,19 @@ function empresaApi(app){
             res.status(500).json(boom.badData(err))
         }
     })
+
+    router.get('/:id',async (req,res)=>{
+        try{
+            const {id} = req.params
+            const data = await objEmpresa.findOne(id)
+            res.json({
+                status:true,
+                content:data
+            })
+        }catch(err){
+            res.status(500).json(boom.badData(err))
+        }
+    })
 }
 
 module.exports = empresaApi
