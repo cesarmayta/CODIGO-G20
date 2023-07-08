@@ -60,6 +60,21 @@ function empresaApi(app){
             res.status(500).json(boom.badData(err))
         }
     })
+
+    router.delete('/:id',async (req,res)=>{
+        try{
+            const {id} = req.params
+
+            const data = await objEmpresa.delete(id)
+            if(data){
+                res.sendStatus(201)
+            }else{
+                res.sendStatus(401)
+            }
+        }catch(err){
+            res.status(500).json(boom.badData(err))
+        }
+    })
 }
 
 module.exports = empresaApi
