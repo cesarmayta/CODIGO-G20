@@ -20,6 +20,19 @@ function empresaApi(app){
             res.status(500).json(boom.badData(err))
         }
     })
+
+    router.post('/',async function(req,res){
+        try{
+            const body = req.body
+            const data = await objEmpresa.create(body)
+            res.status(201).json({
+                status:true,
+                content:data
+            })
+        }catch(err){
+            res.status(500).json(boom.badData(err))
+        }
+    })
 }
 
 module.exports = empresaApi
