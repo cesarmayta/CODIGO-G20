@@ -37,7 +37,7 @@ class UsuarioService{
             if(await bcrypt.compare(usuario.password,result[0].pwd)){
                 const usuarioFound = {
                     id:result[0].id,
-                    usuario:usuario.nombre
+                    usuario:usuario.usuario
                 }
                 return usuarioFound
             }else{
@@ -50,6 +50,11 @@ class UsuarioService{
         }
         catch(err){
             console.error(err)
+            const usuarioNotFound = {
+                id:0,
+                usuario:''
+            }
+            return usuarioNotFound
         }
     }
 

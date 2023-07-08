@@ -33,7 +33,7 @@ function usuarioApi(app){
                 authUsuario,
                 config.jwt_secret,
                 {
-                    expiresIn:'1h'
+                    expiresIn:'1m'
                 }
             )
             res.status(200).json({

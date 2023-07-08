@@ -4,6 +4,7 @@ const boom = require('@hapi/boom')
 
 //middlewares
 const validatorHandler = require('../middlewares/validator.handler')
+const {verifyToken} = require('../middlewares/auth.handler')
 
 const {categoriaSchema} = require('../schemas/categoria.schema')
 
@@ -26,6 +27,7 @@ function categoriaApi(app){
     })
 
     router.post('/',
+    verifyToken,
     validatorHandler(categoriaSchema,'body'),
     async function(req,res){
         const {body:data} = req
