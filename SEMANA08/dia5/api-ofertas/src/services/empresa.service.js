@@ -24,6 +24,12 @@ class EmpresaService{
         }
         return data
     }
+
+    async update(id,data){
+        const dataUpdated = await this.findOne(id)
+        const result = await dataUpdated.update(data)
+        return result
+    }
 }
 
 module.exports = EmpresaService
