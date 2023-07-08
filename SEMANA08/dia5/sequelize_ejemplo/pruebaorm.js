@@ -24,4 +24,12 @@ const Alumno = sequelize.define(
 sequelize.sync()
 .then(()=>{
     console.log('migración exitosa')
+    Alumno.bulkCreate(
+        [
+            {nombre:'Cesar Mayta',email:'cesarmayta@gmail.com'},
+            {nombre:'Claudia Gonzales',email:'clau.gz@hotmail.com'}
+        ]
+    ).then(()=>{
+        return Alumno.findAll()
+    }).then((alumnos)=>console.log(alumnos))
 })
