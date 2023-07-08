@@ -1,6 +1,8 @@
 const {Sequelize} = require('sequelize')
 const {config} = require('../config')
 
+const setupModels = require('../models')
+
 const sequelize = new Sequelize(
     config.mysql_db,
     config.mysql_user,
@@ -9,6 +11,8 @@ const sequelize = new Sequelize(
         dialect:'mysql'
     }
 )
+
+setupModels(sequelize)
 
 sequelize.sync()
 

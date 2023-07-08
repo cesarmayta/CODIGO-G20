@@ -6,7 +6,7 @@ const EmpresaSchema = {
     id:{
         field:'empresa_id',
         allowNull:false,
-        primarykey:true,
+        primaryKey:true,
         autoIncrement:true,
         type:DataTypes.INTEGER
     },
