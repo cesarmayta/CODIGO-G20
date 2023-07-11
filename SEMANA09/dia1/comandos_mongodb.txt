@@ -1,0 +1,36 @@
+comandos mongodb
+
+1 - para iniciar mongodb
+    windows : mongodb
+    mac: mongosh
+
+2 - para visualizar las bases de datos 
+    show dbs
+
+3 - crear una base de datos
+    use db_codigo_g19
+
+4 - crear coleccion y documento para alumnos
+
+    db.alumnos.insertOne({nombre:'tunombre',email:'tuemail'})
+
+5 - buscar documentos
+
+    db.alumnos.find().pretty()
+
+6 - insertar varios documentos
+
+    db.alumnos.insertMany([{nombre:'luis',email:'luis@gmail.com'},
+    {nombre:'Carla',email:'carla@hotmail.com'}])
+
+7 - busqueda con filtros
+
+    db.alumnos.find({nombre:'luis'})
+
+8 - actualización de documentos
+
+    db.alumnos.updateOne({nombre:'luis'},{ $set: { email: 'luis@codigo.edu.pe'}})
+
+9 - eliminar un documento
+
+    db.alumnos.deleteOne({_id : ObjectId("639a941f3be713ab1ccaabe8")})
