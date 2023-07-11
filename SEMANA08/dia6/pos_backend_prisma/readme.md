@@ -10,3 +10,6 @@ npx prisma db pull
 
 #3 - generar prisma cliente
 npx prisma generate
+
+#4 - prisma studio
+npx prisma studio
