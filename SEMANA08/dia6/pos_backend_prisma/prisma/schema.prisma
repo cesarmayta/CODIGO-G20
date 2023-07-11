@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tbl_categoria {
+  categoria_id  Int         @id @default(autoincrement())
+  categoria_nom String      @db.VarChar(100)
+  tbl_plato     tbl_plato[]
+}
+
+model tbl_empleado {
+  id         BigInt @id @default(autoincrement())
+  emp_foto   String @db.VarChar(255)
+  emp_tipo   String @db.VarChar(50)
+  usuario_id Int    @unique(map: "usuario_id")
+}
+
+model tbl_mesa {
+  mesa_id    Int          @id @default(autoincrement())
+  mesa_nro   String       @db.VarChar(10)
+  tbl_pedido tbl_pedido[]
+}
+
+model tbl_pedido {
+  pedido_id        Int                @id @default(autoincrement())
+  pedido_fech      DateTime?          @db.DateTime(6)
+  pedido_nro       String             @db.VarChar(100)
+  pedido_est       String             @db.VarChar(100)
+  mesa_id          Int
+  usu_id           Int
+  tbl_mesa         tbl_mesa           @relation(fields: [mesa_id], references: [mesa_id], onUpdate: Restrict, map: "tbl_pedido_mesa_id_111d7a6b_fk_tbl_mesa_mesa_id")
+  tbl_pedido_plato tbl_pedido_plato[]
+
+  @@index([mesa_id], map: "tbl_pedido_mesa_id_111d7a6b_fk_tbl_mesa_mesa_id")
+  @@index([usu_id], map: "tbl_pedido_usu_id_d14c6130_fk_auth_user_id")
+}
+
+model tbl_pedido_plato {
+  pedidoplato_id   Int        @id @default(autoincrement())
+  pedidoplato_cant Int
+  pedido_id        Int
+  plato_id         Int
+  tbl_pedido       tbl_pedido @relation(fields: [pedido_id], references: [pedido_id], onUpdate: Restrict, map: "tbl_pedido_plato_pedido_id_03e70b3a_fk_tbl_pedido_pedido_id")
+  tbl_plato        tbl_plato  @relation(fields: [plato_id], references: [plato_id], onUpdate: Restrict, map: "tbl_pedido_plato_plato_id_245e2de6_fk_tbl_plato_plato_id")
+
+  @@index([pedido_id], map: "tbl_pedido_plato_pedido_id_03e70b3a_fk_tbl_pedido_pedido_id")
+  @@index([plato_id], map: "tbl_pedido_plato_plato_id_245e2de6_fk_tbl_plato_plato_id")
+}
+
+model tbl_plato {
+  plato_id         Int                @id @default(autoincrement())
+  plato_nom        String             @db.VarChar(200)
+  plato_img        String             @db.VarChar(255)
+  plato_pre        Decimal            @db.Decimal(10, 2)
+  categoria_id     Int
+  tbl_pedido_plato tbl_pedido_plato[]
+  tbl_categoria    tbl_categoria      @relation(fields: [categoria_id], references: [categoria_id], onUpdate: Restrict, map: "tbl_plato_categoria_id_cc821925_fk_tbl_categoria_categoria_id")
+
+  @@index([categoria_id], map: "tbl_plato_categoria_id_cc821925_fk_tbl_categoria_categoria_id")
+}
