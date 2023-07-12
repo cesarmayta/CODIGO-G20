@@ -8,7 +8,7 @@ comandos mongodb
     show dbs
 
 3 - crear una base de datos
-    use db_codigo_g19
+    use db_codigo_g20
 
 4 - crear coleccion y documento para alumnos
 

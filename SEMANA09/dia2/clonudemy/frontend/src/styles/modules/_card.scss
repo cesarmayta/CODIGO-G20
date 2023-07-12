@@ -1,0 +1,207 @@
+.card {
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: transform 0.25s;
+  &--add {
+    background-color: rgba(255, 255, 255, 0.25);
+    width: 100%;
+    cursor: pointer;
+    height: 22.795rem;
+
+    @include tablet {
+      height: auto;
+      align-self: stretch;
+    }
+  }
+
+  &-container {
+    display: grid;
+    text-decoration: none;
+    color: #313131;
+    &--add {
+      height: 100%;
+    }
+    &--edit {
+      position: relative;
+      &:hover .menu--edit {
+        opacity: 1;
+      }
+    }
+
+    @include laptop {
+      grid-template-columns: 35% 1fr;
+      grid-template-areas:
+        "header main"
+        "header footer";
+      grid-auto-flow: row;
+    }
+    &--only-description {
+      & .menu--edit .menu__item--edit {
+        flex-direction: row;
+      }
+      @include laptop {
+        display: flex;
+      }
+    }
+  }
+  &__header {
+    width: 100%;
+    @include laptop {
+      grid-area: header;
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  &__main {
+    @include flex-fd-jc-ai-g($gap: 0.8rem);
+    flex-wrap: wrap;
+    padding: 1rem;
+    @include laptop {
+      grid-area: main;
+      padding: 2rem 2rem 0.8rem 2rem;
+      gap: 1rem;
+    }
+    &--add {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      @include laptop {
+        grid-area: auto;
+        grid-column: 1 / -1;
+        padding: 1.5rem;
+      }
+    }
+    &--only-description {
+      width: 100%;
+      padding: 2rem;
+      gap: 0.5rem;
+      &::before {
+        content: var(--type);
+        font-size: 1.063rem;
+        font-weight: 700;
+      }
+    }
+  }
+  &__title {
+    font-size: 1.063rem;
+    font-weight: 500;
+    margin: 0;
+    &--add {
+      font-size: 1.25rem;
+    }
+  }
+  &__subtitle {
+    margin: 0;
+    flex: 100%;
+    font-weight: 600;
+    @include laptop {
+      flex: 1;
+    }
+  }
+  &__paragraph {
+    margin: 0;
+    color: #7d7d7d;
+    display: none;
+    @include tablet {
+      flex: 100%;
+      display: block;
+    }
+  }
+  &__footer {
+    @include flex-fd-jc-ai-g(row, space-between, center);
+    padding: 1rem;
+    box-sizing: border-box;
+    background-color: #f7fafc;
+    width: 100%;
+    @include laptop {
+      grid-area: footer;
+      background-color: transparent;
+      padding: 0 2rem 2rem 2rem;
+    }
+  }
+  &__price {
+    font-weight: 400;
+    margin: 0;
+    color: #313131;
+    @include laptop {
+      display: none;
+    }
+  }
+  &__level {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: #718096;
+    flex: 1;
+    @include flex-fd-jc-ai-g($gap: 0.5rem);
+    display: none;
+    @include laptop {
+      display: flex;
+    }
+  }
+  @include tablet {
+    flex: calc(100% / 3);
+    &:last-of-type:nth-child(odd) &-container {
+      flex: auto;
+      grid-template-columns: 35% 1fr;
+      grid-template-areas:
+        "header main"
+        "header footer";
+      grid-auto-flow: row;
+      .card__header {
+        grid-area: header;
+      }
+      .card__main {
+        grid-area: main;
+        padding: 2rem 2rem 0.8rem 2rem;
+        gap: 1rem;
+        &--add {
+          @include laptop {
+            grid-area: auto;
+            grid-column: 1 / -1;
+            padding: 1.5rem;
+          }
+        }
+      }
+      .card__footer {
+        grid-area: footer;
+        background-color: transparent;
+        padding: 0 2rem 2rem 2rem;
+      }
+      .card__price {
+        display: none;
+      }
+      .card__subtitle {
+        flex: 1;
+      }
+      .card__level {
+        display: flex;
+      }
+      .menu--features {
+        width: auto;
+        flex: 1.8;
+      }
+    }
+    @include laptop {
+      flex: auto;
+    }
+  }
+  &--author {
+    flex: 1;
+  }
+  &:active {
+    transform: scale(1.025) rotate(-0.5deg);
+  }
+}
+
+.cards {
+  width: 100%;
+  box-sizing: border-box;
+  @include flex-fd-jc-ai-g(row, center, center, 2rem);
+  flex-wrap: wrap;
+}

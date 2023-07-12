@@ -1,0 +1,128 @@
+.main {
+  padding-top: 4.62rem;
+  background-color: #e2e8f0;
+  flex: 1;
+  &--course,
+  &--auth {
+    overflow: hidden;
+  }
+}
+
+.section {
+  &-container {
+    padding: 1rem;
+    box-sizing: border-box;
+    @include flex-fd-jc-ai-g(column, center, flex-start, 2rem);
+    &--courses {
+      gap: 0.5rem;
+      @include tablet {
+        padding: 3rem 2rem;
+      }
+      @include laptop {
+        padding: 5rem 2rem 3rem 2rem;
+      }
+    }
+    &--filter {
+      gap: 1rem;
+      &:first-child {
+        gap: 0rem;
+        .section__title {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    &--info {
+      gap: 1rem;
+    }
+    &--course {
+      padding: 3rem 1rem;
+      @include laptop {
+        width: 60%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    &--filter {
+      font-size: 1rem;
+    }
+    &--course {
+      font-size: 1.375rem;
+    }
+  }
+  &__paragraph {
+    margin: 0;
+    font-size: 1rem;
+    &--courses {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    &--info {
+      color: #666;
+      line-height: 1.25rem;
+    }
+  }
+  &--courses {
+    position: relative;
+    min-height: 100vh;
+    @include laptop {
+      flex: auto;
+    }
+  }
+}
+
+.container {
+  width: min(100%, 1280px);
+  margin: auto;
+  &--courses {
+    @include flex-fd-jc-ai-g(row, center, flex-start, 2rem);
+  }
+  &--select {
+    position: relative;
+    &:has(> .menu--categories-open) {
+      .button--select {
+        box-shadow: 0 0px 0.25rem 0 rgba(0, 0, 0, 0.12);
+        border-radius: 0.25rem 0.25rem 0 0;
+        position: relative;
+      }
+    }
+  }
+  &--admin {
+    @include flex-fd-jc-ai-g(row, center, flex-start, 2rem);
+  }
+}
+
+.aside {
+  display: none;
+  height: 100%;
+  &-container {
+    height: 100%;
+    padding-top: 5rem;
+    &--sidebar {
+      color: #fff;
+    }
+  }
+  @include tablet {
+    display: block;
+  }
+  &--nav {
+    display: block;
+    transform: translateX(-125%);
+    transition: transform 0.25s;
+    padding-bottom: 1.5rem;
+    & .aside-container {
+      padding-top: 1rem;
+      overflow: auto;
+    }
+    @include tablet {
+      display: none;
+    }
+  }
+}
