@@ -45,7 +45,7 @@ categoryController.updateOne = async (req,res)=>{
 
 categoryController.deleteOne = async (req,res)=>{
     await CategoryModel.findByIdAndDelete(req.params.id)
-    res.sendStatus(201)
+    res.sendStatus(202)
 }
 
 
