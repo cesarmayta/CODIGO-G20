@@ -21,5 +21,6 @@ app.get('/',(req,res)=>{
 
 //routes
 app.use('/categories',require('./routes/category.route'))
+app.use('/course',require('./routes/course.route'))
 
 module.exports = app
