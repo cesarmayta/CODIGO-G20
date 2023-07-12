@@ -19,10 +19,7 @@ courseController.create = async (req,res)=>{
 
 courseController.getAll = async (req,res)=>{
     const courses = await courseModel.find()
-    res.json({
-        status:true,
-        content:courses
-    })
+    res.json(courses)
 }
 
 module.exports = courseController
