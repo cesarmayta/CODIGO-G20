@@ -56,11 +56,6 @@ const CourseHero = ({ course }) => {
             </span>
           </li>
           <li className="menu__item">
-            <button className="button button--basket">
-              <BiBasket color="#dd6b20" size={18} />
-            </button>
-          </li>
-          <li className="menu__item">
             <Link to="#" className="button button--start-course">
               Start Course
             </Link>

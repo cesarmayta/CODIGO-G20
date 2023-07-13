@@ -19,6 +19,7 @@ export const actionRegister = async ({ request }) => {
     }
   );
   const data = await response.json();
+  window.location.href = "/auth/login";
   return data
 };
 

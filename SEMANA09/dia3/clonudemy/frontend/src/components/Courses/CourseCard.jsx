@@ -8,7 +8,7 @@ import AdminCourseForm from "../Admin/AdminCourseForm";
 import Modal from "../shared/Modal";
 import Stars from "../shared/Stars";
 
-const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
+const CourseCard = ({ course, withModal, Container = Link, setCourses,isMember=false }) => {
   const stars = getStars(course);
   const { modal, overlay, openModal, closeModal } = useModal();
   const {
@@ -24,6 +24,11 @@ const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
   const handleClickDelete = () => {
     openModalDelete();
   };
+  let course_url = `/course/${course._id}`
+  if(isMember){
+    course_url = `/member/course/${course._id}`
+  }
+  
   return (
     <>
       <article className="card">
@@ -32,7 +37,7 @@ const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
           handleDelete={handleClickDelete}
           course={course}
           className="card-container"
-          to={`/course/${course._id}`}
+          to={course_url}
         >
           <header className="card__header">
             <img

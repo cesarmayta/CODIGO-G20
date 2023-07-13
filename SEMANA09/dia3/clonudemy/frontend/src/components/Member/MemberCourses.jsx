@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BsPlusLg } from "react-icons/bs";
 import useCourses from "../../hooks/useCourses";
-import CourseCard from "../Courses/CourseCard";
+import CourseCard from "../../components/Courses/CourseCard";
 import Spinner from "../shared/Spinner";
 import Container from "../shared/Container";
 
@@ -30,13 +30,7 @@ const MemberCourses = () => {
           ) : (
             <>
               {courses.map((course) => (
-                <CourseCard
-                  key={course.id}
-                  withModal
-                  setCourses={setCourses}
-                  course={course}
-                  Container={Container}
-                />
+                <CourseCard key={course.id} course={course} isMember={true} />
               ))}
             </>
           )}
