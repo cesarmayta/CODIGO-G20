@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function useCourses(url = "http://127.0.0.1:5000/curso") {
+export default function useCourses(url = "http://127.0.0.1:5000/course") {
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState([]);
   const getCourses = async () => {

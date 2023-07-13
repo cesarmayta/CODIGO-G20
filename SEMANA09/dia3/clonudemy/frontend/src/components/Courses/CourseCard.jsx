@@ -32,7 +32,7 @@ const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
           handleDelete={handleClickDelete}
           course={course}
           className="card-container"
-          to={`/course/${course.id}`}
+          to={`/course/${course._id}`}
         >
           <header className="card__header">
             <img
@@ -88,11 +88,11 @@ const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
                 cb={(data) =>
                   setCourses((prevCourses) =>
                     prevCourses.map((prevCourse) =>
-                      prevCourse.id === data.id ? data : prevCourse
+                      prevCourse._id === data._id ? data : prevCourse
                     )
                   )
                 }
-                url={`http://127.0.0.1:5000/curso/${course.id}`}
+                url={`http://127.0.0.1:5000/course/${course._id}`}
                 method="PUT"
                 labelsExtra={[
                   {
@@ -156,11 +156,11 @@ const CourseCard = ({ course, withModal, Container = Link, setCourses }) => {
                 cb={(data) =>
                   setCourses((prevCourses) =>
                     prevCourses.filter(
-                      (prevCourse) => prevCourse.id !== data.id
+                      (prevCourse) => prevCourse._id !== data._id
                     )
                   )
                 }
-                url={`http://127.0.0.1:5000/curso/${course.id}`}
+                url={`http://127.0.0.1:5000/course/${course._id}`}
                 course={course}
               />
             </div>

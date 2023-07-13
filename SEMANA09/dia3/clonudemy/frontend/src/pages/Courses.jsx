@@ -9,11 +9,7 @@ export const loaderCourses = (params) => {
   const queries = { category };
   if (!category) {
     const params = [
-      ["category", "all"],
-      ["level", "beginner"],
-      ["course-type", "free"],
-      ["stars", 5],
-      ["duration", "+5"],
+      ["category", "all"]
     ];
     params.forEach((param) => url.searchParams.set(...param));
     return redirect(url);

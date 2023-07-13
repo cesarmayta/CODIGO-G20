@@ -22,4 +22,15 @@ courseController.getAll = async (req,res)=>{
     res.json(courses)
 }
 
+courseController.getOne = async (req,res)=>{
+    const course = await courseModel.findById(req.params.id)
+    res.json(course)
+}
+
+courseController.updateOne = async (req,res)=>{
+    await courseModel.findByIdAndUpdate(req.params.id,req.body)
+    const course = await courseModel.findById(req.params.id)
+    res.json(course)
+}
+
 module.exports = courseController

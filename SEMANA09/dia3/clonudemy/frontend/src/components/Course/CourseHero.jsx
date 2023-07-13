@@ -6,18 +6,19 @@ import Stars from "../shared/Stars";
 
 const CourseHero = ({ course }) => {
   const category = course.category?.replace("-", " ");
+  console.log(category)
   const stars = getStars(course);
   return (
     <article
       style={{
-        backgroundImage: `url(${course.banner || course.img})`,
+        backgroundcolor: `#92a8d1`,
       }}
       className="hero"
     >
       <div className="hero-container">
         <img
           className="hero__img"
-          src={course.banner || course.img}
+          src={course.img}
           alt={`Previus ${course.title} course`}
         />
         <h3 className="hero__subtitle">{category}</h3>

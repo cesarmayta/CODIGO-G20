@@ -5,7 +5,7 @@ export default function useCategories() {
   const [categories, setCategories] = useState([]);
   const getCategories = async () => {
     setLoading(true);
-    const response = await fetch("http://localhost:5000/categoria");
+    const response = await fetch("http://localhost:5000/categories");
     const data = await response.json();
     setCategories(data.content);
     setLoading(false);
