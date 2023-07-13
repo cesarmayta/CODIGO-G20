@@ -1,0 +1,52 @@
+@use "sass:meta";
+@use "sass:map";
+
+@mixin flex-fd-jc-ai-g(
+  $flex-direction: row,
+  $justify-content: flex-start,
+  $align-items: stretch,
+  $gap: 0
+) {
+  display: flex;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+  align-items: $align-items;
+  @if (meta.type-of($gap) == "number" or meta.type-of($gap) == "string") {
+    gap: $gap;
+  } @else {
+    gap: map.get($gap, "y") map.get($gap, "x");
+  }
+}
+
+@mixin animation-nm-ts-dr-tf(
+  $name,
+  $times: 1,
+  $duration: 0.3s,
+  $timing-function: linear
+) {
+  animation: $name $times $duration $timing-function;
+}
+
+@mixin sm {
+  @media (min-width: 640px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}

@@ -1,0 +1,48 @@
+.svg {
+  &__title {
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+  }
+  &-container {
+    will-change: opacity;
+    opacity: 0;
+    inset: 0;
+    margin: auto;
+    position: absolute;
+    @include flex-fd-jc-ai-g(column, center, center, 1rem);
+    transition: opacity 0.25s;
+  }
+  &--empty {
+    &:nth-child(1) {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+    }
+    &:nth-child(2) {
+      display: block;
+      @include tablet {
+        display: none;
+      }
+    }
+  }
+}
+
+@keyframes openAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes exitAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

@@ -1,0 +1,26 @@
+.auth {
+  &-container {
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    @include tablet {
+      padding: 2rem 2rem;
+      width: min(100%, 1024px);
+      margin: auto;
+    }
+  }
+  &__title {
+    margin: 0;
+    font-size: 1.625rem;
+  }
+  &__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #666;
+  }
+}
