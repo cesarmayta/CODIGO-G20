@@ -11,7 +11,7 @@ const CourseHero = ({ course }) => {
   return (
     <article
       style={{
-        backgroundcolor: `#92a8d1`,
+        backgroundColor: `#92a8d1`,
       }}
       className="hero"
     >
