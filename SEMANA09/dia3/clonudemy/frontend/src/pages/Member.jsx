@@ -31,4 +31,4 @@ const Member = () => {
   );
 };
 
-export default Admin;
+export default Member;

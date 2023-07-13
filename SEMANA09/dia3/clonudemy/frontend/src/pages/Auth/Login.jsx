@@ -7,7 +7,7 @@ export const actionLogin = async ({ request }) => {
   const formData = await request.formData();
   const body = fromFormDataToJson(formData);
   const response = await fetch(
-    "https://apimocha.com/education-platform/auth/login",
+    "http://localhost:5000/user/auth",
     {
       method: "POST",
       body: JSON.stringify(body),
@@ -16,8 +16,14 @@ export const actionLogin = async ({ request }) => {
       },
     }
   );
-  const data = await response.json();
-  return data;
+  if (response.status === 200) {
+    const data = await response.json();
+    let token = data.token;
+    localStorage.setItem('token', token);
+    // Perform the redirection to another page
+    window.location.href = "/member";
+  }
+  return true;
 };
 
 const Login = () => {
