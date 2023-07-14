@@ -24,4 +24,15 @@ videoController.getByCourseId = async (req,res)=>{
     res.json(videos)
 }
 
+videoController.updateOne = async (req,res)=>{
+    await videoModel.findByIdAndUpdate(req.params.id,req.body)
+    const videoUpdated = await videoModel.findById(req.params.id)
+    res.json(videoUpdated)
+}
+
+videoController.deleteOne = async (req,res)=>{
+    await videoModel.findByIdAndDelete(req.params.id)
+    res.sendStatus(202)
+}
+
 module.exports = videoController
