@@ -3,7 +3,7 @@ const router = Router()
 
 const {verifyToken} = require('../middlewares/auth.handler')
 
-const {create,auth,getOne,getAll} = require('../controllers/user.controller')
+const {create,auth,getOne,getAll,updateOne} = require('../controllers/user.controller')
 
 router.route('/')
 .post(create)
@@ -11,6 +11,7 @@ router.route('/')
 
 router.route('/:id')
 .get(verifyToken,getOne)
+.put(verifyToken,updateOne)
 
 router.route('/auth')
 .post(auth)

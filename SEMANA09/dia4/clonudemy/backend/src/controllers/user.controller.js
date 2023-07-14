@@ -37,6 +37,21 @@ userController.getOne = async (req,res) =>{
     }
 }
 
+userController.updateOne = async (req,res) =>{
+    try{
+        await userModel.findByIdAndUpdate(req.params.id,req.body)
+        const user = await userModel.findById(req.params.id)
+        res.json({
+            id:user._id,
+            email:user.email,
+        })
+    }catch(err){
+        res.status(502).json({
+            message:err
+        })
+    }
+}
+
 userController.getAll = async (req,res) =>{
     try{
         const users = await userModel.find()

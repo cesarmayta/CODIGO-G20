@@ -12,6 +12,10 @@ const UserSchema = new Schema({
         type: String,
         require:true,
         minlength:4
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 },{
     timestamps:false,
