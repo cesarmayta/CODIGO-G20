@@ -29,6 +29,7 @@ userController.getOne = async (req,res) =>{
         res.json({
             id:user._id,
             email:user.email,
+            isAdmin:user.isAdmin
         })
     }catch(err){
         res.status(502).json({
@@ -72,7 +73,8 @@ userController.auth = async (req,res)=> {
         if(await bcrypt.compare(dataPassword,userAuth.password)){
             const token = jwt.sign({
                 _id:userAuth._id,
-                email:userAuth.email
+                email:userAuth.email,
+                isAdmin:userAuth.isAdmin
             },config.jwt_secret,
             { expiresIn : '1h'})
 

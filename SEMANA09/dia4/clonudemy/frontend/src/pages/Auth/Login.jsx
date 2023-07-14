@@ -19,9 +19,25 @@ export const actionLogin = async ({ request }) => {
   if (response.status === 200) {
     const data = await response.json();
     let token = data.token;
-    localStorage.setItem('token', token);
-    // Perform the redirection to another page
-    window.location.href = "/member";
+    if(token)
+      {
+        let payload = token.split('.')[1];
+        let payloadDecoded = atob(payload);
+        let payloadJSON = JSON.parse(payloadDecoded);
+        console.log("id de usuario : " + payloadJSON._id);
+        let isAdmin = payloadJSON.isAdmin
+        localStorage.setItem('token', token);
+        if(isAdmin){
+          window.location.href = "/admin";
+        }else{
+          window.location.href = "/member";
+        }
+      }
+    else
+      {
+        console.log('no hay token')
+        window.location.href = "/auth/login";
+      }
   }
   return true;
 };
