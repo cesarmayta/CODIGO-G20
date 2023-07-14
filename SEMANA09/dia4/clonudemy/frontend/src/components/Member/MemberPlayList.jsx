@@ -16,7 +16,7 @@ const MemberPlayList = ({ videos }) => {
              <li
               key={index}
               style={styles.videoItem}
-              onClick={() => handleVideoClick(video.videoId)}
+              onClick={() => handleVideoClick(video.code)}
             >
               {video.title}
             </li>

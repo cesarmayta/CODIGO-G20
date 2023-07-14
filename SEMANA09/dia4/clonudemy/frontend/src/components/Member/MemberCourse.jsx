@@ -33,12 +33,12 @@ const MemberCourse = () => {
 
   const videos = [
     {
-      videoId: 'CwLHf_gcECY',
+      code: 'CwLHf_gcECY',
       title: 'Video 1 Title',
       description: 'Video 1 Description',
     },
     {
-      videoId: '9Z4BYWKP-mk',
+      code: '9Z4BYWKP-mk',
       title: 'Video 2 Title',
       description: 'Video 2 Description',
     },
