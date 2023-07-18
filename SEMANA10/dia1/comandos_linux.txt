@@ -1,0 +1,21 @@
+sudo -- permite ejecutar comandos como administrador
+sudo apt update - actualizar el sistema
+sudo apt install net-tools --instala libreria net tools
+sudo init 0 -- apaga el servidor
+ifconfig -- para saber la ip del servidor
+ping ip_servidor (ejem : ping 192.168.0.2) para comprobar conexión
+
+### servicio SSH
+en gitbash
+ejecutar
+ssh codigo@direccion_ip_servidor
+ingresar la clave
+
+### instalar servidor web
+sudo apt install nginx
+cd /var/www/html
+cat nombrearchivo -- puedo ver el contenido
+entramos por winscp y creamos un archivo prueba.html en /home/codigo
+luego en el gitbash ejecutamos este comando
+sudo cp prueba.html /var/www/html
+
