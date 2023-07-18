@@ -15,6 +15,10 @@ app.get('/',(req,res)=>{
     })
 })
 
+app.use('/categories',require('../../routes/category.route'))
+app.use('/course',require('../../routes/course.route'))
+app.use('/video',require('../../routes/video.route'))
+
 app.listen(config.ms_courses.port,function(){
     console.log(`ms courses : http://localhost:${config.ms_courses.port}`)
 })

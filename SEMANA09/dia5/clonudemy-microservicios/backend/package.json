@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devcourses":"nodemon src/microservices/ms-courses/index.js",
+    "devusers":"nodemon src/microservices/ms-users/index.js",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
