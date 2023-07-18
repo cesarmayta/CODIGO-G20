@@ -19,3 +19,23 @@ entramos por winscp y creamos un archivo prueba.html en /home/codigo
 luego en el gitbash ejecutamos este comando
 sudo cp prueba.html /var/www/html
 
+### Instalar nvm en ubuntu
+sudo apt install curl
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+source ~/.bashrc
+nvm install v18.16.1
+
+### instalar mongodb en ubuntu
+sudo apt install gnupg2
+wget -nc https://www.mongodb.org/static/pgp/server-6.0.asc
+cat server-6.0.asc | gpg --dearmor | sudo tee /etc/apt/keyrings/mongodb.gpg >/dev/null
+sudo sh -c 'echo "deb [ arch=amd64,arm64 signed-by=/etc/apt/keyrings/mongodb.gpg] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" >> /etc/apt/sources.list.d/mongo.list'
+sudo apt update
+sudo apt install mongodb-org
+
+
+sudo apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common
+
+### desplegar proyecto node en ubuntu
+
+
