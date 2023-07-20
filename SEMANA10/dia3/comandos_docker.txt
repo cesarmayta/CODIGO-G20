@@ -10,6 +10,9 @@ docker images
 #para desplegar un contenedor
 docker run -d -p 80:80 --name mi-nginx nginx
 
+#para desplegar un contenedor y poder detenerlo y eliminarlo al mismo tiempo
+docker run -d --rm -p 80:80 --name mi-nginx nginx
+
 #para ver mis contenedores
 docker ps
 
@@ -18,3 +21,22 @@ docker stop mi-nginx
 
 #para eliminar un contenedor
 docker rm mi-nginx 
+
+#### para interactuar con nuestro contenedor ####
+
+#para ver los logs
+docker logs mi-nginx
+
+#para ejecutar un comando dentro del contenedor
+
+docker exec mi-gninx ls
+
+#para ingresar al terminal de mi contenedor
+docker exec -it nginx-codigo //bin//sh
+
+############ VOLUMENES ###################
+docker volume ls
+docker volume create web
+docker run -d --rm -p 80:80 --mount source=web,target=/usr/share/nginx/html/ --name nginx-codigo nginx:alpine
+docker run -d --rm -p 80:80 -v /home/codigo/html:/usr/share/nginx/html --name nginx-codigo nginx:alpine
+
