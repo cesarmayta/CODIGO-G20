@@ -1,0 +1,20 @@
+#para ver versión de docker
+docker version
+
+#para descargar una imagen
+docker pull nginx
+
+#para ver mis imagenes
+docker images
+
+#para desplegar un contenedor
+docker run -d -p 80:80 --name mi-nginx nginx
+
+#para ver mis contenedores
+docker ps
+
+#para detener un contenedor
+docker stop mi-nginx
+
+#para eliminar un contenedor
+docker rm mi-nginx 
