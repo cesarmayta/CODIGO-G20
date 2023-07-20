@@ -40,3 +40,10 @@ docker volume create web
 docker run -d --rm -p 80:80 --mount source=web,target=/usr/share/nginx/html/ --name nginx-codigo nginx:alpine
 docker run -d --rm -p 80:80 -v /home/codigo/html:/usr/share/nginx/html --name nginx-codigo nginx:alpine
 
+########### CREACION DE IMAGENES #################
+docker build -t udemy-api:1.0 .
+docker compose up -d
+docker compose down
+docker rmi nombre_imagen
+
+
