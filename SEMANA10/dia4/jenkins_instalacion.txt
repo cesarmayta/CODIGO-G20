@@ -1,0 +1,31 @@
+instalación jenkins en ubuntu 22.04
+
+1 instalar openjdk
+sudo apt install openjdk-11-jre
+sudo apt install openjdk-11-jdk
+
+https://www.linuxcapable.com/how-to-install-openjdk-11-on-ubuntu-linux/
+
+2 - cargar instaladores jenkins
+
+$ curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+$ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
+sudo apt install jenkins
+
+una vez instaladro ve a esta url
+tuip:8080
+
+te pedira una clave
+
+la clave la ejecutando este comando en el terminal de tu servidor
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+copia el codigo y pegalo en la pagina de jenkins
+
+https://www.jenkins.io/blog/2023/03/27/repository-signing-keys-changing/
