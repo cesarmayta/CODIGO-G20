@@ -1,0 +1,20 @@
+.rating {
+  background-color: #ebf8ff;
+  box-shadow: 0 0 0 0.15rem #bee3f8, 0 0 0 0.0625rem rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  &__main {
+    @include flex-fd-jc-ai-g(column, center, center, 0.5rem);
+  }
+  &__score {
+    margin: 0;
+    font-size: 5rem;
+  }
+  &__subtitle {
+    margin: 0;
+    color: #2c5282;
+    font-weight: 600;
+  }
+}
