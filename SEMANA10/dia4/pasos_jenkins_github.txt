@@ -1,0 +1,12 @@
+- github webhook
+
+http://tuippublica:8080/github-webhook/
+
+
+
+-dar permisos a jenkins para ejecutar docker
+grep docker /etc/group
+sudo usermod -a -G docker jenkins
+sudo service jenkins restart
+
+*****
