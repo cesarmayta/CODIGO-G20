@@ -19,28 +19,19 @@ passport.use(new GoogleStrategy({
     callbackURL : "http://localhost:5000/callback"
 },function(accessToken,refreshToken,profile,done){
     console.log(profile)
-    const hash = await bcrypt.hash('google',10)
+    const hash = bcrypt.hash(profile.id,10)
     const userData = {
-        email: profile.email
+        email: profile.emails[0].value,
+        password:hash
     }
-
     try{
         
-        req.body.password = hash
-        const newUser = new userModel(req.body)
-        await newUser.save()
-        res.json({
-            'id':newUser._id,
-            'email':newUser.email
-        })
+        const newUser = new userModel(userData)
+        newUser.save()
     }catch(err){
-        res.status(502).json({
-            message:err
-        })
+        console.log(err)
+        
     }
-
-
-
 }))
 
 passport.initialize()
