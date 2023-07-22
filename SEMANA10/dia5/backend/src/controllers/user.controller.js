@@ -93,4 +93,25 @@ userController.auth = async (req,res)=> {
     }
 }
 
+userController.authGoogle = async (req,res) =>{
+    try{
+        const hash = await bcrypt.hash(req.user.id,10)
+        userData = {
+            email: req.user.emails[0].value,
+            password:hash
+        }
+        console.log(userData)
+        const newUser = new userModel(userData)
+        await newUser.save()
+        res.json({
+            'id':newUser._id,
+            'email':newUser.email
+        })
+    }catch(err){
+        res.status(502).json({
+            message:err
+        })
+    }
+}
+
 module.exports = userController

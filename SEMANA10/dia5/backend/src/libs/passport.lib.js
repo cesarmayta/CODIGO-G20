@@ -1,9 +1,9 @@
 const {config} = require('../config')
-const bcrypt = require('bcryptjs')
+//const bcrypt = require('bcryptjs')
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
 
-const userModel = require('../models/user.model')
+//const userModel = require('../models/user.model')
 
 passport.serializeUser(function (user,done){
     done(null,user)
@@ -16,10 +16,11 @@ passport.deserializeUser(function(user,done){
 passport.use(new GoogleStrategy({
     clientID:config.google.clientId,
     clientSecret:config.google.clientSecret,
-    callbackURL : "http://localhost:5000/callback"
+    callbackURL : "http://localhost:5000/google/callback"
 },function(accessToken,refreshToken,profile,done){
     console.log(profile)
-    const hash = bcrypt.hash(profile.id,10)
+    return done(null,profile)
+    /*const hash = bcrypt.hash(profile.id,10)
     const userData = {
         email: profile.emails[0].value,
         password:hash
@@ -31,7 +32,7 @@ passport.use(new GoogleStrategy({
     }catch(err){
         console.log(err)
         
-    }
+    }*/
 }))
 
 passport.initialize()

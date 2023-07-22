@@ -19,7 +19,7 @@ function verifyToken(req,res,next){
         return next()
     }else{
         res.status(403).json({
-            message:'token is undefined'
+            message:'no existe token'
         })
     }
 }

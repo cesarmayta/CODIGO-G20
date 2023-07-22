@@ -50,7 +50,10 @@ app.get('/login',passport.authenticate('google',{ scope: ['profile', 'email'] })
 app.get('/callback',
 passport.authenticate('google',{failureRedirect:'/failed'}),
     function(req,res){
-        res.send('estas logueado')
+        res.json({
+            'email':req.user.emails[0].value,
+            "id":req.user.id
+        })
     }
 )
 
