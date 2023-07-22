@@ -14,4 +14,7 @@ const io = SocketIO(server)
 
 io.on('connection',(socket)=>{
     console.log('nueva conexión por web socket id : ',socket.id)
+    socket.on('mensajeCliente',(data)=>{
+        console.log('mensaje del cliente : ',data)
+    })
 })
