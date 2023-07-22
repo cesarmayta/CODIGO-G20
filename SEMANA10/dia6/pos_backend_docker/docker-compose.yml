@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: api.mysql
+    restart: always
+    volumes:
+      - db_data:/var/lib/mysql:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: codigo2023
+      MYSQL_DATABASE: db_pos
+    ports:
+      - "3307:3306"
+
+  api:
+    container_name: api.pos
+    build: ./app
+    command: gunicorn pos_backend.wsgi:application --bind 0.0.0.0:3762
+    volumes:
+      - ./app:/usr/src/app´
+      - ./app/static:/usr/src/app/static
+    ports:
+      - 3762:3762
+    env_file:
+      - ./app/.env
+    depends_on:
+      - db
+
+  nginx:
+    container_name: pos.proxy
+    build: ./nginx
+    volumes:
+      - ./app/static:/usr/src/app/static
+    ports:
+      - "8090:80"
+    depends_on:
+      - api
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  db_data:
+  static_volume:
