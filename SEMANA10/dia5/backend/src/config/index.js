@@ -13,7 +13,8 @@ const config = {
     google:{
         clientId : process.env.GOOGLE_CLIENT_ID,
         clientSecret : process.env.GOOGLE_CLIENT_SECRET
-    }
+    },
+    url_frontend: process.env.URL_FRONTEND || 'http://localhost:5173'
 }
 
 module.exports = {config}

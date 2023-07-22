@@ -10,13 +10,18 @@ const UserSchema = new Schema({
     },
     password:{
         type: String,
-        require:true,
+        require:false,
         minlength:4
     },
     isAdmin:{
         type:Boolean,
         default:false
-    }
+    },
+    googleId:{
+        type: String,
+        require:false,
+        minlength:4
+    },
 },{
     timestamps:false,
     versionKey:false

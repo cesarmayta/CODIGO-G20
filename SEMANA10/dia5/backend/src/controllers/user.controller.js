@@ -95,18 +95,35 @@ userController.auth = async (req,res)=> {
 
 userController.authGoogle = async (req,res) =>{
     try{
-        const hash = await bcrypt.hash(req.user.id,10)
-        userData = {
-            email: req.user.emails[0].value,
-            password:hash
+        const userAuth = await userModel.findOne({googleId:req.user.id})
+        if(!userAuth){
+            const hash = await bcrypt.hash(req.user.id,10)
+            userData = {
+                email: req.user.emails[0].value,
+                password:hash,
+                googleId:req.user.id
+            }
+            console.log(userData)
+            const newUser = new userModel(userData)
+            await newUser.save()
+            const token = jwt.sign({
+                _id:newUser._id,
+                email:newUser.email,
+                isAdmin:newUser.isAdmin
+            },config.jwt_secret,
+            { expiresIn : '1h'})
+            localStorage.setItem('token', token);
+        }else{
+            const token = jwt.sign({
+                _id:userAuth._id,
+                email:userAuth.email,
+                isAdmin:userAuth.isAdmin
+            },config.jwt_secret,
+            { expiresIn : '1h'})
+            localStorage.setItem('token', token);
         }
-        console.log(userData)
-        const newUser = new userModel(userData)
-        await newUser.save()
-        res.json({
-            'id':newUser._id,
-            'email':newUser.email
-        })
+
+
     }catch(err){
         res.status(502).json({
             message:err
