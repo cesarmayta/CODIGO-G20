@@ -38,6 +38,7 @@ passport.use(new GoogleStrategy({
     callbackURL : "http://localhost:5000/callback"
 },function(accessToken,refreshToken,profile,done){
     console.log(profile)
+    console.log(profile.emails[0].value)
     return done(null,profile)
 }))
 
