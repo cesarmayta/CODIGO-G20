@@ -9,3 +9,14 @@ btn.addEventListener('click',function(){
         mensaje:mensaje.value
     })
 })
+
+socket.on('mensajeServidor',function(data){
+    console.log(data)
+    output.innerHTML += `
+    <div class="card">
+        <div class="card-body">
+            ${data.mensaje}
+        </div>
+    </div>
+    `
+})
